@@ -1,0 +1,278 @@
+name: Archive storytold source + deb
+
+# Archivage COMPLET de chaque release de l'organisation officielle `storytold` :
+#   - le code : bundle git (toutes refs, historique complet)
+#   - le paquet : .deb linux-x86_64 de la release
+#
+# Déclenchement : sondage toutes les 15 minutes. Chaque passage compare la
+# dernière release amont à ce qui est déjà archivé ; seules les applications
+# ayant une NOUVELLE release (ou un .deb manquant) sont traitées. Les autres
+# sortent immédiatement — le coût d'un passage à vide est de quelques secondes.
+
+on:
+  schedule:
+    - cron: "*/15 * * * *"
+  workflow_dispatch:
+    inputs:
+      apps:
+        description: "Apps séparées par des virgules, ou 'all'"
+        required: false
+        default: "all"
+      keep:
+        description: "Archives conservées par app (défaut 1)"
+        required: false
+        default: "1"
+      force:
+        description: "Réarchiver même si déjà présent"
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: archive-storytold
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  UPSTREAM_ORG: storytold
+  DEB_ARCH: x86_64
+  DEFAULT_APPS: >-
+    craft-launcher photocraft vectorcraft pdfcraft cadcraft deckcraft gridcraft
+    wordcraft lightcraft filmcraft figcraft effectcraft designcraft materialcraft
+    texturecraft soundcraft anicraft craft-anything craft-libs craft-fonts
+    craft-i18n craft-launcher-assets
+
+jobs:
+  # --------------------------------------------------------------------------
+  # 1. Sondage : quelle release amont est nouvelle ?
+  # --------------------------------------------------------------------------
+  discover:
+    runs-on: ubuntu-latest
+    outputs:
+      matrix: ${{ steps.build.outputs.matrix }}
+      count: ${{ steps.build.outputs.count }}
+    steps:
+      - name: Comparer amont et coffre
+        id: build
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          INPUT_APPS: ${{ inputs.apps || 'all' }}
+          FORCE: ${{ inputs.force || 'false' }}
+          TARGET_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          if [ "$INPUT_APPS" = "all" ]; then apps="$DEFAULT_APPS"; else apps="$(echo "$INPUT_APPS" | tr ',' ' ')"; fi
+          json="[]"
+          for app in $apps; do
+            if ! gh api "repos/$UPSTREAM_ORG/$app" > meta.json 2>/dev/null; then
+              echo "::warning::$app introuvable en amont — ignoré"; continue
+            fi
+            branch="$(jq -r '.default_branch' meta.json)"
+            sha="$(gh api "repos/$UPSTREAM_ORG/$app/commits/$branch" --jq '.sha')"
+
+            # Version de référence : le tag de release amont, sinon le SHA court.
+            rtag="$(gh api "repos/$UPSTREAM_ORG/$app/releases/latest" --jq '.tag_name' 2>/dev/null || true)"
+            if [ -z "$rtag" ] || [ "$rtag" = "null" ]; then
+              key="${sha:0:7}"; want_deb=false
+            else
+              key="$rtag"; want_deb=true
+            fi
+            TAG="source/$app/$key"
+
+            # Déjà archivé ? On vérifie aussi la présence du .deb.
+            state="$(gh api "repos/$TARGET_REPO/releases/tags/$TAG" \
+                      --jq '[.assets[].name] | join(",")' 2>/dev/null || true)"
+            if [ "$FORCE" != "true" ] && [ -n "$state" ]; then
+              case "$state" in
+                *.bundle*)
+                  if [ "$want_deb" = "false" ] || echo "$state" | grep -q '\.deb'; then
+                    echo "$app → $key : déjà archivé (bundle + deb)"
+                    continue
+                  fi
+                  echo "$app → $key : bundle présent, .deb manquant → reprise"
+                  ;;
+              esac
+            fi
+
+            echo "$app → $key @ ${sha:0:7} (branche $branch)"
+            json="$(jq -c --arg a "$app" --arg b "$branch" --arg s "$sha" \
+              --arg k "$key" --arg t "$TAG" \
+              '. + [{app:$a, branch:$b, sha:$s, key:$k, tag:$t}]' <<< "$json")"
+          done
+          echo "matrix={\"include\":$(jq -c . <<< "$json")}" >> "$GITHUB_OUTPUT"
+          echo "count=$(jq 'length' <<< "$json")" >> "$GITHUB_OUTPUT"
+          echo "$(jq 'length' <<< "$json") application(s) à traiter"
+
+  # --------------------------------------------------------------------------
+  # 2. Archivage : code + .deb
+  # --------------------------------------------------------------------------
+  archive:
+    needs: discover
+    if: needs.discover.outputs.count != '0'
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    strategy:
+      fail-fast: false
+      max-parallel: 4
+      matrix: ${{ fromJSON(needs.discover.outputs.matrix) }}
+    steps:
+      - name: Archiver ${{ matrix.app }} ${{ matrix.key }}
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          APP: ${{ matrix.app }}
+          SHA: ${{ matrix.sha }}
+          BRANCH: ${{ matrix.branch }}
+          KEY: ${{ matrix.key }}
+          TAG: ${{ matrix.tag }}
+          KEEP: ${{ inputs.keep || '1' }}
+          TARGET_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          SHORT="${SHA:0:7}"
+          WORK="$RUNNER_TEMP/work"
+          mkdir -p "$WORK/assets"
+          cd "$WORK"
+          OUT="$WORK/assets"
+
+          # --- Code : clone miroir puis bundle toutes refs -------------------
+          echo "== clone --mirror de $UPSTREAM_ORG/$APP"
+          git clone --quiet --mirror "https://github.com/$UPSTREAM_ORG/$APP.git" repo.git
+          git -C repo.git for-each-ref --format='%(refname) %(objectname)' > refs.txt
+          NB_REFS=$(wc -l < refs.txt)
+          NB_BRANCHES=$(grep -c '^refs/heads/' refs.txt || true)
+          NB_TAGS=$(grep -c '^refs/tags/' refs.txt || true)
+          echo "$NB_REFS refs : $NB_BRANCHES branches, $NB_TAGS tags"
+
+          BUNDLE="$OUT/${APP}-${SHORT}.bundle"
+          git -C repo.git bundle create "$BUNDLE" --all HEAD
+          ( cd repo.git && git bundle verify "$BUNDLE" | tail -2 )
+          BUNDLE_SHA=$(sha256sum "$BUNDLE" | cut -d' ' -f1)
+
+          # --- Paquet : .deb linux-x86_64 de la release ---------------------
+          DEB_NAME=""; DEB_SHA=""; DEB_BYTES=0; DEB_CHECK="aucune release"
+          if [ "$KEY" != "$SHORT" ]; then
+            echo "== release amont $KEY — recherche du .deb $DEB_ARCH"
+            if gh release download "$KEY" --repo "$UPSTREAM_ORG/$APP" \
+                 --pattern "*linux-${DEB_ARCH}.deb" --dir "$OUT" 2>/dev/null; then
+              DEB_PATH="$(ls "$OUT"/*linux-${DEB_ARCH}.deb | head -1)"
+              DEB_NAME="$(basename "$DEB_PATH")"
+              DEB_BYTES=$(stat -c %s "$DEB_PATH")
+              DEB_SHA=$(sha256sum "$DEB_PATH" | cut -d' ' -f1)
+              DEB_CHECK="téléchargé"
+
+              # Intégrité : comparaison au SHA256SUMS.txt publié par l'amont.
+              if gh release download "$KEY" --repo "$UPSTREAM_ORG/$APP" \
+                   --pattern "SHA256SUMS.txt" --dir "$OUT" 2>/dev/null; then
+                WANT="$(awk -v f="$DEB_NAME" '$NF==f || $NF=="*"f {print $1}' "$OUT/SHA256SUMS.txt" | head -1)"
+                if [ -n "$WANT" ]; then
+                  if [ "$WANT" = "$DEB_SHA" ]; then DEB_CHECK="SHA-256 OK"; else
+                    echo "::error::SHA-256 du .deb invalide ($DEB_SHA ≠ $WANT)"; exit 1
+                  fi
+                else
+                  DEB_CHECK="absent de SHA256SUMS.txt"
+                  echo "::warning::$DEB_NAME absent du SHA256SUMS.txt amont"
+                fi
+              else
+                DEB_CHECK="sommes amont indisponibles"
+                echo "::warning::$APP n'expose pas de SHA256SUMS.txt"
+              fi
+              echo "$DEB_NAME — $((DEB_BYTES/1048576)) Mo — $DEB_CHECK"
+            else
+              DEB_CHECK="pas de .deb $DEB_ARCH dans la release"
+              echo "::warning::$APP $KEY n'a pas de .deb $DEB_ARCH"
+            fi
+          fi
+
+          # --- Manifeste ----------------------------------------------------
+          cat > "$OUT/MANIFEST.json" <<JSON
+          {
+            "upstream": "https://github.com/$UPSTREAM_ORG/$APP",
+            "upstream_release": "$([ "$KEY" = "$SHORT" ] && echo "" || echo "$KEY")",
+            "upstream_default_branch": "$BRANCH",
+            "upstream_head": "$SHA",
+            "archived_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "workflow_run": "$GITHUB_SERVER_URL/$TARGET_REPO/actions/runs/$GITHUB_RUN_ID",
+            "code": {"refs_total": $NB_REFS, "branches": $NB_BRANCHES, "tags": $NB_TAGS,
+                     "bundle": "$(basename "$BUNDLE")", "bundle_bytes": $(stat -c %s "$BUNDLE"),
+                     "bundle_sha256": "$BUNDLE_SHA"},
+            "package": {"file": "$DEB_NAME", "bytes": $DEB_BYTES, "sha256": "$DEB_SHA",
+                        "integrity": "$DEB_CHECK", "arch": "$DEB_ARCH"},
+            "restore_code": ["git clone $(basename "$BUNDLE") $APP",
+                             "cd $APP && git remote set-url origin https://github.com/<vous>/$APP.git",
+                             "git push --mirror origin"],
+            "restore_package": "sudo apt install ./$DEB_NAME"
+          }
+          JSON
+
+          # --- Publication --------------------------------------------------
+          gh release create "$TAG" "$OUT"/* refs.txt \
+            --repo "$TARGET_REPO" \
+            --title "$APP $KEY" \
+            --notes "Archive de github.com/$UPSTREAM_ORG/$APP — release \`$KEY\`.
+          **Code** : bundle git toutes refs ($NB_BRANCHES branches, $NB_TAGS tags), historique complet.
+          **Paquet** : ${DEB_NAME:-aucun} ($DEB_CHECK).
+          Restauration : \`git clone <bundle>\` puis \`git push --mirror\` ; paquet : \`apt install ./<deb>\`." \
+          || { echo "::error::publication impossible pour $TAG"; exit 1; }
+
+          # --- Rétention : KEEP archives par application --------------------
+          if [ "$KEEP" -gt 0 ]; then
+            gh api "repos/$TARGET_REPO/releases?per_page=100" --paginate \
+              --jq "[.[] | select(.tag_name | startswith(\"source/$APP/\"))] | sort_by(.created_at) | reverse | .[$KEEP:] | .[].tag_name" \
+              | while read -r old; do
+                  [ -n "$old" ] || continue
+                  echo "purge $old"
+                  gh release delete "$old" --repo "$TARGET_REPO" --yes --cleanup-tag || true
+                done
+          fi
+
+  # --------------------------------------------------------------------------
+  # 3. Index + keepalive
+  # --------------------------------------------------------------------------
+  index:
+    needs: [discover, archive]
+    if: always() && needs.discover.outputs.count != '0'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Régénérer source-index.json
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          gh api "repos/${{ github.repository }}/releases?per_page=100" --paginate \
+            --jq '[.[] | select(.tag_name | startswith("source/"))
+                   | {tag: .tag_name,
+                      app: (.tag_name | split("/")[1]),
+                      version: (.tag_name | split("/")[2]),
+                      archived_at: .created_at,
+                      bundle: ([.assets[] | select(.name | endswith(".bundle")) | {name, size, url: .browser_download_url}][0]),
+                      deb: ([.assets[] | select(.name | endswith(".deb")) | {name, size, url: .browser_download_url}][0])}]' \
+            | jq -s 'add // [] | sort_by(.archived_at) | reverse' > source-index.json
+          echo "source-index.json : $(jq length source-index.json) archive(s)"
+
+      - name: Commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add source-index.json
+          if git diff --cached --quiet; then
+            date -u > .keepalive
+            git add .keepalive
+          fi
+          git commit -m "chore: index source $(date -u +%Y-%m-%dT%H:%MZ)" || true
+          git push || echo "::warning::rien à pousser"
+
+      - name: Résumé
+        run: |
+          {
+            echo "## Archives storytold"
+            echo ""
+            echo "| App | Version | Code | .deb |"
+            echo "|---|---|---|---|"
+            jq -r '.[] | "| \(.app) | \(.version) | \(if .bundle then "\(((.bundle.size)/1048576*10|floor)/10) Mo" else "—" end) | \(if .deb then "\(((.deb.size)/1048576*10|floor)/10) Mo" else "—" end) |"' source-index.json
+          } >> "$GITHUB_STEP_SUMMARY"
