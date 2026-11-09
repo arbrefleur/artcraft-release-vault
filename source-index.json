@@ -1,5 +1,53 @@
 [
   {
+    "app": "egui",
+    "archived_at": "2026-11-09T21:23:11Z",
+    "bundle": {
+      "name": "egui-bf5ac0d.bundle",
+      "size": 84093597,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/egui/bf5ac0d/egui-bf5ac0d.bundle"
+    },
+    "deb": null,
+    "tag": "source/egui/bf5ac0d",
+    "version": "bf5ac0d"
+  },
+  {
+    "app": "indd-utils",
+    "archived_at": "2026-11-09T21:23:11Z",
+    "bundle": {
+      "name": "indd-utils-136f973.bundle",
+      "size": 4444489,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/indd-utils/136f973/indd-utils-136f973.bundle"
+    },
+    "deb": null,
+    "tag": "source/indd-utils/136f973",
+    "version": "136f973"
+  },
+  {
+    "app": "winit",
+    "archived_at": "2026-11-09T21:23:11Z",
+    "bundle": {
+      "name": "winit-f0a8348.bundle",
+      "size": 14802494,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/winit/f0a8348/winit-f0a8348.bundle"
+    },
+    "deb": null,
+    "tag": "source/winit/f0a8348",
+    "version": "f0a8348"
+  },
+  {
+    "app": "winprint.rs",
+    "archived_at": "2026-11-09T21:23:11Z",
+    "bundle": {
+      "name": "winprint.rs-ea03a9d.bundle",
+      "size": 16968451,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/winprint.rs/ea03a9d/winprint.rs-ea03a9d.bundle"
+    },
+    "deb": null,
+    "tag": "source/winprint.rs/ea03a9d",
+    "version": "ea03a9d"
+  },
+  {
     "app": "craft-ai-integrations",
     "archived_at": "2026-11-09T21:12:58Z",
     "bundle": {
