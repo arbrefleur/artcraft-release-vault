@@ -39,12 +39,13 @@ env:
   UPSTREAM_ORG: storytold
   DEB_ARCH: x86_64
 
-  # Découverte automatique : toute nouvelle application dont le nom suit la
-  # convention (« <nom>craft » : photocraft, cadcraft, anicraft…) est prise en
-  # compte sans modifier ce fichier. Les dépôts utilitaires (craft-libs,
-  # craft-fonts…) restent listés explicitement ci-dessous.
+  # Découverte automatique : toute application dont le nom suit l'une des deux
+  # conventions est prise en compte sans modifier ce fichier :
+  #   - suffixe  : photocraft, cadcraft, anicraft…   (<nom>craft)
+  #   - préfixe  : craft-audio, craft-video…          (craft-<nom>)
+  # Une nouvelle application craft-* est donc archivée au passage suivant.
   AUTO_DISCOVER: "true"
-  APPS_PATTERN: '^[a-z0-9]+craft$'
+  APPS_PATTERN: '^([a-z0-9]+craft|craft-.+)$'
   # Dépôts qui correspondent au motif mais ne sont PAS des applications.
   APPS_EXCLUDE: "artcraft artcraft-services artcraftx placeholder-artcraft"
 

@@ -84,18 +84,26 @@ Le déclenchement manuel reste disponible (`Actions → Run workflow`).
 ### Nouvelles applications : aucune modification nécessaire
 
 Le job `discover` liste les dépôts de l'organisation et ajoute automatiquement
-toute application dont le nom suit la convention `<nom>craft` (`newcraft`,
-`audiocraft`…), à condition qu'elle ne soit ni archivée ni un fork.
+toute application dont le nom suit l'une des deux conventions, à condition
+qu'elle ne soit ni archivée ni un fork.
 
 | Réglage | Valeur | Effet |
 |---|---|---|
 | `AUTO_DISCOVER` | `true` | découverte automatique activée |
-| `APPS_PATTERN` | `^[a-z0-9]+craft$` | motif des noms d'applications |
+| `APPS_PATTERN` | `^([a-z0-9]+craft\|craft-.+)$` | `photocraft` **ou** `craft-audio` |
 | `APPS_EXCLUDE` | `artcraft artcraft-services artcraftx placeholder-artcraft` | dépôts exclus (monorepo et services, trop volumineux) |
-| `DEFAULT_APPS` | 22 dépôts | liste toujours archivée, y compris les utilitaires `craft-*` |
+| `DEFAULT_APPS` | 22 dépôts | liste toujours archivée, indépendante de la découverte |
 
-Cas particulier : une nouvelle application nommée `craft-quelquechose` n'est pas
-captée par le motif. Il faut alors l'ajouter à `DEFAULT_APPS` — une ligne.
+Une application `craft-audio` publiée demain est donc archivée au passage
+suivant, sans toucher à ce dépôt. Les dépôts vides (aucun commit) sont ignorés
+avec un avertissement, sans faire échouer le run.
+
+**Effet de bord assumé** : le motif `craft-.+` attrape aussi les dépôts
+d'outillage de l'organisation (`craft-wiki`, `craft-common-actions`,
+`craft-pr-review-tool`, `craft-repo-status-app`, `craft-ai-integrations`,
+`craft-contrib`, `craft-extensions`, `craft-skills`). Ils sont archivés comme
+les autres. Pour les écarter, ajoutez-les à `APPS_EXCLUDE` — c'est une liste
+séparée par des espaces.
 
 ### Rétention : `keep = 1`
 
