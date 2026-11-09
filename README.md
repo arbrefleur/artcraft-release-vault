@@ -111,27 +111,40 @@ Vérifié dans les `Cargo.toml` / `Cargo.lock` et la CI des applications :
 Donc : sur les 8 dépôts d'outillage, **3 sont indispensables** à une
 reconstruction fidèle, 1 sert à la CI, 4 sont du confort.
 
-### Angle mort comblé : les dépendances de build
+### Dépendances de build : détection automatique
 
 Les applications dépendent de dépôts externes épinglés par révision dans leurs
-`Cargo.toml`. Trois sont des **forks** de l'organisation — exclus de la
-découverte automatique (qui écarte les forks) mais indispensables à un rebuild.
-Ils sont donc archivés explicitement via `DEP_REPOS` :
+manifestes. Ces dépôts sont **relevés automatiquement** à chaque passage : le
+job `discover` lit les `Cargo.toml`, `Cargo.lock`, `package.json`,
+`.gitmodules` et `pyproject.toml` de chaque application, extrait toutes les URL
+`github.com/storytold/<dépôt>`, et ajoute les dépôts trouvés au périmètre —
+**y compris les forks**, que la découverte par nommage écarte par principe.
+
+| Réglage | Valeur | Effet |
+|---|---|---|
+| `AUTO_DEPS` | `true` | détection automatique des dépendances |
+| `DEP_MANIFESTS` | `Cargo.toml Cargo.lock package.json .gitmodules pyproject.toml` | fichiers inspectés |
+| `MAX_REPOS` | `60` | garde-fou : le passage échoue au-delà |
+| `DEP_REPOS` | `egui winit winprint.rs indd-utils` | filet de sécurité manuel, en plus |
+
+Relevé au 9 novembre 2026 :
 
 | Dépôt | Applications dépendantes | Origine amont |
 |---|---|---|
 | `egui` | 16 | fork de `emilk/egui` |
 | `winit` | 16 | fork de `rust-windowing/winit` |
 | `winprint.rs` | 6 | fork de `ArcticLampyrid/winprint.rs` |
-| `indd-utils` | designcraft | dépôt propre (pas un fork) |
+| `indd-utils` | designcraft | dépôt propre |
+| `AniCraft` | dépendance déclarée | dépôt distinct de `anicraft` |
 
-Relevé fait dans les `Cargo.toml` et `Cargo.lock` des 18 applications : 14
-références à `storytold/egui` et autant à `storytold/winit` par application.
+Une nouvelle dépendance apparaît dans un manifeste : elle est archivée au
+passage suivant, sans intervention. `wgpu` et `spark`, forks de l'organisation
+mais référencés par aucune application, restent hors périmètre.
 
-`wgpu` et `spark` sont aussi des forks de l'organisation, mais **aucune
-application ne les référence** : volontairement non archivés.
-
-Pour ajouter une dépendance future : une ligne dans `DEP_REPOS` du workflow.
+Limite honnête : la détection porte sur les manifestes de la **racine** du
+dépôt, pas sur des sous-répertoires arbitraires. Une dépendance déclarée
+uniquement dans un crate imbriqué serait manquée — d'où le maintien de
+`DEP_REPOS` comme filet.
 
 ---
 

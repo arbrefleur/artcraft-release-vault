@@ -56,15 +56,18 @@ env:
     craft-i18n craft-launcher-assets
 
   # Dépendances de compilation externes, épinglées par révision dans les
-  # Cargo.toml des applications. Trois sont des forks de l'organisation —
-  # exclus de la découverte automatique (qui écarte les forks) mais
-  # indispensables à un rebuild fidèle.
-  #   egui        → 16 applications      (fork emilk/egui)
-  #   winit       → 16 applications      (fork rust-windowing/winit)
-  #   winprint.rs → 6 applications       (fork ArcticLampyrid/winprint.rs)
-  #   indd-utils  → designcraft          (dépôt propre, pas un fork)
-  # Ajouter ici toute nouvelle dépendance git externe repérée dans un Cargo.toml.
+  # manifestes des applications. Détectées AUTOMATIQUEMENT : le job discover
+  # relève toutes les URL github.com/storytold/* présentes dans les
+  # Cargo.toml / Cargo.lock / package.json / .gitmodules / pyproject.toml de
+  # chaque application, et ajoute au périmètre les dépôts correspondants.
+  # DEP_REPOS ne sert plus que de filet de sécurité manuel (utile si une
+  # dépendance n'est pas référencée dans un manifeste).
+  AUTO_DEPS: "true"
   DEP_REPOS: "egui winit winprint.rs indd-utils"
+  # Manifestes inspectés pour la détection des dépendances.
+  DEP_MANIFESTS: "Cargo.toml Cargo.lock package.json .gitmodules pyproject.toml"
+  # Garde-fou : nombre maximal de dépôts pris en compte par passage.
+  MAX_REPOS: "60"
 
 jobs:
   # --------------------------------------------------------------------------
@@ -88,7 +91,7 @@ jobs:
           if [ "$INPUT_APPS" != "all" ]; then
             apps="$(echo "$INPUT_APPS" | tr ',' ' ')"
           else
-            apps="$DEFAULT_APPS $DEP_REPOS"
+            apps="$DEFAULT_APPS"
             if [ "$AUTO_DISCOVER" = "true" ]; then
               echo "== découverte automatique dans l'org $UPSTREAM_ORG"
               for n in $(gh api "orgs/$UPSTREAM_ORG/repos?per_page=100" --paginate \
@@ -103,6 +106,42 @@ jobs:
           fi
           apps="$(echo $apps | tr ' ' '\n' | sed '/^$/d' | sort -u | tr '\n' ' ')"
           echo "périmètre : $(echo $apps | wc -w) dépôt(s)"
+
+          # --- Détection automatique des dépendances -------------------------
+          # Relevé des URL github.com/storytold/<depot> dans les manifestes de
+          # chaque application. Les dépôts trouvés sont ajoutés au périmètre,
+          # y compris les forks (que la découverte automatique écarte).
+          if [ "$AUTO_DEPS" = "true" ]; then
+            echo "== détection des dépendances dans les manifestes"
+            : > deps_raw.txt
+            for app in $apps; do
+              br="$(gh api "repos/$UPSTREAM_ORG/$app" --jq '.default_branch' 2>/dev/null || echo main)"
+              for mf in $DEP_MANIFESTS; do
+                curl -sfL --max-time 20 "https://raw.githubusercontent.com/$UPSTREAM_ORG/$app/$br/$mf" 2>/dev/null \
+                  | sed -nE 's#.*github\.com[:/]'"$UPSTREAM_ORG"'/([A-Za-z0-9_.-]+).*#\1#p' \
+                  | sed 's/\.git$//' >> deps_raw.txt || true
+              done
+            done
+            found="$(sort -u deps_raw.txt | sed '/^$/d')"
+            echo "  dépendances déclarées : $(echo $found | tr '\n' ' ')"
+            for dep in $found; do
+              case " $apps " in *" $dep "*) continue ;; esac
+              case " $APPS_EXCLUDE " in *" $dep "*) continue ;; esac
+              if gh api "repos/$UPSTREAM_ORG/$dep" --jq '.archived' >/dev/null 2>&1; then
+                echo "  + $dep (dépendance, hors périmètre initial)"
+                apps="$apps $dep"
+              else
+                echo "  - $dep ignoré (n'existe pas dans l'organisation)"
+              fi
+            done
+            apps="$apps $DEP_REPOS"
+            apps="$(echo $apps | tr ' ' '\n' | sed '/^$/d' | sort -u | tr '\n' ' ')"
+            echo "périmètre élargi : $(echo $apps | wc -w) dépôt(s)"
+            if [ "$(echo $apps | wc -w)" -gt "$MAX_REPOS" ]; then
+              echo "::error::périmètre de $(echo $apps | wc -w) dépôts dépasse MAX_REPOS=$MAX_REPOS"
+              exit 1
+            fi
+          fi
 
           json="[]"
           for app in $apps; do
