@@ -6,8 +6,8 @@ name: Archive storytold source + deb
 #
 # Déclenchement : sondage toutes les 15 minutes. Chaque passage compare la
 # dernière release amont à ce qui est déjà archivé ; seules les applications
-# ayant une NOUVELLE release (ou un .deb manquant) sont traitées. Les autres
-# sortent immédiatement — le coût d'un passage à vide est de quelques secondes.
+# ayant une NOUVELLE release (ou un .deb manquant) sont traitées.
+# Les autres sortent immédiatement — coût d'un passage à vide : quelques secondes.
 
 on:
   schedule:
@@ -38,6 +38,16 @@ permissions:
 env:
   UPSTREAM_ORG: storytold
   DEB_ARCH: x86_64
+
+  # Découverte automatique : toute nouvelle application dont le nom suit la
+  # convention (« <nom>craft » : photocraft, cadcraft, anicraft…) est prise en
+  # compte sans modifier ce fichier. Les dépôts utilitaires (craft-libs,
+  # craft-fonts…) restent listés explicitement ci-dessous.
+  AUTO_DISCOVER: "true"
+  APPS_PATTERN: '^[a-z0-9]+craft$'
+  # Dépôts qui correspondent au motif mais ne sont PAS des applications.
+  APPS_EXCLUDE: "artcraft artcraft-services artcraftx placeholder-artcraft"
+
   DEFAULT_APPS: >-
     craft-launcher photocraft vectorcraft pdfcraft cadcraft deckcraft gridcraft
     wordcraft lightcraft filmcraft figcraft effectcraft designcraft materialcraft
@@ -46,7 +56,7 @@ env:
 
 jobs:
   # --------------------------------------------------------------------------
-  # 1. Sondage : quelle release amont est nouvelle ?
+  # 1. Sondage : quelle application a une nouveauté ?
   # --------------------------------------------------------------------------
   discover:
     runs-on: ubuntu-latest
@@ -63,25 +73,43 @@ jobs:
           TARGET_REPO: ${{ github.repository }}
         run: |
           set -euo pipefail
-          if [ "$INPUT_APPS" = "all" ]; then apps="$DEFAULT_APPS"; else apps="$(echo "$INPUT_APPS" | tr ',' ' ')"; fi
+          if [ "$INPUT_APPS" != "all" ]; then
+            apps="$(echo "$INPUT_APPS" | tr ',' ' ')"
+          else
+            apps="$DEFAULT_APPS"
+            if [ "$AUTO_DISCOVER" = "true" ]; then
+              echo "== découverte automatique dans l'org $UPSTREAM_ORG"
+              for n in $(gh api "orgs/$UPSTREAM_ORG/repos?per_page=100" --paginate \
+                           --jq '.[] | select(.archived==false and .fork==false) | .name'); do
+                echo "$n" | grep -qE "$APPS_PATTERN" || continue
+                case " $APPS_EXCLUDE " in *" $n "*) continue ;; esac
+                case " $apps " in *" $n "*) continue ;; esac
+                echo "  + $n (nouvelle application détectée)"
+                apps="$apps $n"
+              done
+            fi
+          fi
+          apps="$(echo $apps | tr ' ' '\n' | sed '/^$/d' | sort -u | tr '\n' ' ')"
+          echo "périmètre : $(echo $apps | wc -w) dépôt(s)"
+
           json="[]"
           for app in $apps; do
             if ! gh api "repos/$UPSTREAM_ORG/$app" > meta.json 2>/dev/null; then
               echo "::warning::$app introuvable en amont — ignoré"; continue
             fi
             branch="$(jq -r '.default_branch' meta.json)"
-            sha="$(gh api "repos/$UPSTREAM_ORG/$app/commits/$branch" --jq '.sha')"
+            sha="$(gh api "repos/$UPSTREAM_ORG/$app/commits/$branch" --jq '.sha' 2>/dev/null || true)"
+            if [ -z "$sha" ]; then
+              echo "::warning::$app : dépôt sans commit — ignoré"; continue
+            fi
 
-            # Version de référence : le tag de release amont, sinon le SHA court.
-            # Attention : sur un dépôt sans release, gh api peut renvoyer le corps
-            # d'erreur JSON sur stdout — on valide donc le format du tag.
+            # Version de référence : tag de release amont, sinon SHA court.
+            # Sur un dépôt sans release, gh api peut renvoyer le corps d'erreur
+            # JSON sur stdout — on valide donc le format du tag.
             rtag="$(gh api "repos/$UPSTREAM_ORG/$app/releases/latest" --jq '.tag_name // empty' 2>/dev/null || true)"
             if ! printf '%s' "$rtag" | grep -qE '^[A-Za-z0-9._/-]+$'; then rtag=""; fi
-            if [ -z "$rtag" ]; then
-              key="${sha:0:7}"; want_deb=false
-            else
-              key="$rtag"; want_deb=true
-            fi
+            if [ -z "$rtag" ]; then key="${sha:0:7}"; want_deb=false
+            else key="$rtag"; want_deb=true; fi
             TAG="source/$app/$key"
 
             # Déjà archivé ? On vérifie aussi la présence du .deb.
@@ -91,8 +119,7 @@ jobs:
               case "$state" in
                 *.bundle*)
                   if [ "$want_deb" = "false" ] || echo "$state" | grep -q '\.deb'; then
-                    echo "$app → $key : déjà archivé (bundle + deb)"
-                    continue
+                    echo "$app → $key : déjà archivé"; continue
                   fi
                   echo "$app → $key : bundle présent, .deb manquant → reprise"
                   ;;
@@ -136,12 +163,18 @@ jobs:
           SHORT="${SHA:0:7}"
           WORK="$RUNNER_TEMP/work"
           mkdir -p "$WORK/assets"
-          cd "$WORK"
           OUT="$WORK/assets"
 
           # --- Code : clone miroir puis bundle toutes refs -------------------
           echo "== clone --mirror de $UPSTREAM_ORG/$APP"
-          git clone --quiet --mirror "https://github.com/$UPSTREAM_ORG/$APP.git" repo.git
+          if ! git clone --quiet --mirror "https://github.com/$UPSTREAM_ORG/$APP.git" "$WORK/repo.git" 2>/dev/null; then
+            echo "::warning::$APP : clone impossible (dépôt vide ou supprimé) — ignoré"; exit 0
+          fi
+          cd "$WORK"
+          if [ "$(git -C repo.git rev-list --all --count)" = "0" ]; then
+            echo "::warning::$APP : aucun commit en amont — rien à archiver"; exit 0
+          fi
+
           git -C repo.git for-each-ref --format='%(refname) %(objectname)' > refs.txt
           NB_REFS=$(wc -l < refs.txt)
           NB_BRANCHES=$(grep -c '^refs/heads/' refs.txt || true)
@@ -235,7 +268,7 @@ jobs:
   # --------------------------------------------------------------------------
   index:
     needs: [discover, archive]
-    if: always() && needs.discover.outputs.count != '0'
+    if: always()
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
