@@ -1,5 +1,53 @@
 [
   {
+    "app": "anicraft",
+    "archived_at": "2026-11-09T20:59:41Z",
+    "bundle": {
+      "name": "anicraft-86f74b7.bundle",
+      "size": 8066508,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/anicraft/86f74b7/anicraft-86f74b7.bundle"
+    },
+    "deb": null,
+    "tag": "source/anicraft/86f74b7",
+    "version": "86f74b7"
+  },
+  {
+    "app": "craft-fonts",
+    "archived_at": "2026-11-09T20:59:41Z",
+    "bundle": {
+      "name": "craft-fonts-aced413.bundle",
+      "size": 122514402,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-fonts/aced413/craft-fonts-aced413.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-fonts/aced413",
+    "version": "aced413"
+  },
+  {
+    "app": "craft-launcher-assets",
+    "archived_at": "2026-11-09T20:59:41Z",
+    "bundle": {
+      "name": "craft-launcher-assets-8619bde.bundle",
+      "size": 3511893,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher-assets/8619bde/craft-launcher-assets-8619bde.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-launcher-assets/8619bde",
+    "version": "8619bde"
+  },
+  {
+    "app": "craft-libs",
+    "archived_at": "2026-11-09T20:59:41Z",
+    "bundle": {
+      "name": "craft-libs-1b34eba.bundle",
+      "size": 107962149,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/1b34eba/craft-libs-1b34eba.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-libs/1b34eba",
+    "version": "1b34eba"
+  },
+  {
     "app": "cadcraft",
     "archived_at": "2026-11-09T20:56:11Z",
     "bundle": {
