@@ -1,5 +1,17 @@
 [
   {
+    "app": "AniCraft",
+    "archived_at": "2026-11-09T21:33:13Z",
+    "bundle": {
+      "name": "AniCraft-86f74b7.bundle",
+      "size": 8062025,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/AniCraft/86f74b7/AniCraft-86f74b7.bundle"
+    },
+    "deb": null,
+    "tag": "source/AniCraft/86f74b7",
+    "version": "86f74b7"
+  },
+  {
     "app": "egui",
     "archived_at": "2026-11-09T21:23:11Z",
     "bundle": {
