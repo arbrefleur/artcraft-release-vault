@@ -107,10 +107,22 @@ jobs:
             # Version de référence : tag de release amont, sinon SHA court.
             # Sur un dépôt sans release, gh api peut renvoyer le corps d'erreur
             # JSON sur stdout — on valide donc le format du tag.
-            rtag="$(gh api "repos/$UPSTREAM_ORG/$app/releases/latest" --jq '.tag_name // empty' 2>/dev/null || true)"
+            rel_json="$(gh api "repos/$UPSTREAM_ORG/$app/releases/latest" 2>/dev/null || true)"
+            rtag="$(printf '%s' "$rel_json" | jq -r '.tag_name // empty' 2>/dev/null || true)"
             if ! printf '%s' "$rtag" | grep -qE '^[A-Za-z0-9._/-]+$'; then rtag=""; fi
-            if [ -z "$rtag" ]; then key="${sha:0:7}"; want_deb=false
-            else key="$rtag"; want_deb=true; fi
+            if [ -z "$rtag" ]; then
+              key="${sha:0:7}"; want_deb=false
+            else
+              key="$rtag"
+              # On n'exige un .deb que si la release amont en publie un :
+              # sinon (craft-i18n, craft-wiki…) la reprise tournerait à vide.
+              if printf '%s' "$rel_json" | jq -e --arg p "linux-${DEB_ARCH}.deb" \
+                   '[.assets[].name | endswith($p)] | any' >/dev/null 2>&1; then
+                want_deb=true
+              else
+                want_deb=false
+              fi
+            fi
             TAG="source/$app/$key"
 
             # Déjà archivé ? On vérifie aussi la présence du .deb.
@@ -244,14 +256,23 @@ jobs:
           JSON
 
           # --- Publication --------------------------------------------------
-          gh release create "$TAG" "$OUT"/* refs.txt \
-            --repo "$TARGET_REPO" \
-            --title "$APP $KEY" \
-            --notes "Archive de github.com/$UPSTREAM_ORG/$APP — release \`$KEY\`.
+          # La release peut déjà exister (reprise d'un .deb manquant) :
+          # dans ce cas on ajoute les fichiers au lieu d'en créer une seconde.
+          if gh release view "$TAG" --repo "$TARGET_REPO" >/dev/null 2>&1; then
+            echo "release $TAG existante → mise à jour des fichiers"
+            gh release upload "$TAG" "$OUT"/* refs.txt \
+              --repo "$TARGET_REPO" --clobber \
+              || { echo "::error::mise à jour impossible pour $TAG"; exit 1; }
+          else
+            gh release create "$TAG" "$OUT"/* refs.txt \
+              --repo "$TARGET_REPO" \
+              --title "$APP $KEY" \
+              --notes "Archive de github.com/$UPSTREAM_ORG/$APP — release \`$KEY\`.
           **Code** : bundle git toutes refs ($NB_BRANCHES branches, $NB_TAGS tags), historique complet.
           **Paquet** : ${DEB_NAME:-aucun} ($DEB_CHECK).
           Restauration : \`git clone <bundle>\` puis \`git push --mirror\` ; paquet : \`apt install ./<deb>\`." \
-          || { echo "::error::publication impossible pour $TAG"; exit 1; }
+              || { echo "::error::publication impossible pour $TAG"; exit 1; }
+          fi
 
           # --- Rétention : KEEP archives par application --------------------
           # Ne purge QUE des archives de même nature que celle qu'on vient de
