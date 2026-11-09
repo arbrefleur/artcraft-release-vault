@@ -18,7 +18,7 @@ amont, le tag porte le SHA court du commit : `source/anicraft/86f74b7`.
 | Fichier | Contenu |
 |---|---|
 | `<app>-<sha>.bundle` | bundle git **toutes refs** : branches, tags et `refs/pull`. Historique complet, objets inclus. |
-| `<app>-<version>-linux-x86_64.deb` | paquet Debian de la release, tel que publié en amont |
+| `<app>-<version>-linux-x86_64.deb` | paquet Debian de la release, quand elle en publie un |
 | `MANIFEST.json` | origine, version, HEAD, horodatage, nombre de refs, SHA-256 du bundle et du `.deb`, procédures de restauration |
 | `refs.txt` | liste exhaustive des refs archivées (une par ligne, avec son objet git) |
 
@@ -29,6 +29,10 @@ amont, le tag porte le SHA court du commit : `source/anicraft/86f74b7`.
   si les sommes divergent, le job échoue et rien n'est publié ;
 - nombre de refs et de commits consigné dans `MANIFEST.json`.
 
+Le `.deb` n'est exigé que si la release amont en publie un : les dépôts qui
+n'ont pas de paquet Linux (`craft-i18n`, `craft-wiki`…) ne sont donc pas
+repris indéfiniment.
+
 ---
 
 ## Restaurer
@@ -38,7 +42,6 @@ amont, le tag porte le SHA court du commit : `source/anicraft/86f74b7`.
 ```bash
 git clone photocraft-v0.22.0.bundle photocraft
 cd photocraft
-git --git-dir=/dev/null bundle verify ../photocraft-v0.22.0.bundle   # contrôle
 git tag | wc -l                                  # tags restaurés
 ```
 
@@ -64,28 +67,13 @@ sudo apt install ./photocraft-v0.22.0-linux-x86_64.deb
 
 ---
 
-## Fonctionnement
+## Ce qui est archivé, et pourquoi
 
-### Déclenchement : sondage toutes les 15 minutes
+### Périmètre : découverte automatique
 
-Un vrai webhook est impossible : l'organisation `storytold` ne nous appartient
-pas, on ne peut pas y installer de hook. Le workflow `archive-storytold-complete.yml`
-sonde donc l'amont (`cron: */15 * * * *`) et compare la dernière release de
-chaque application à ce qui est déjà archivé :
-
-- **rien de nouveau** → sortie immédiate, aucun téléchargement ;
-- **nouvelle release** → archivage du code + du `.deb` ;
-- **bundle présent mais `.deb` manquant** → reprise de l'archivage.
-
-Une version publiée en amont est donc capturée en général dans le quart d'heure.
-Les crons GitHub sont *best effort* : un retard de quelques minutes est normal.
-Le déclenchement manuel reste disponible (`Actions → Run workflow`).
-
-### Nouvelles applications : aucune modification nécessaire
-
-Le job `discover` liste les dépôts de l'organisation et ajoute automatiquement
-toute application dont le nom suit l'une des deux conventions, à condition
-qu'elle ne soit ni archivée ni un fork.
+Le job `discover` liste les dépôts de l'organisation et retient ceux qui
+correspondent à l'une des deux conventions de nommage, ne sont ni archivés ni
+des forks :
 
 | Réglage | Valeur | Effet |
 |---|---|---|
@@ -94,47 +82,95 @@ qu'elle ne soit ni archivée ni un fork.
 | `APPS_EXCLUDE` | `artcraft artcraft-services artcraftx placeholder-artcraft` | dépôts exclus (monorepo et services, trop volumineux) |
 | `DEFAULT_APPS` | 22 dépôts | liste toujours archivée, indépendante de la découverte |
 
-Une application `craft-audio` publiée demain est donc archivée au passage
-suivant, sans toucher à ce dépôt. Les dépôts vides (aucun commit) sont ignorés
-avec un avertissement, sans faire échouer le run.
+Une application `craft-audio` publiée demain est archivée au passage suivant,
+**sans modifier ce dépôt**. Les dépôts vides (aucun commit) sont ignorés avec un
+avertissement, sans faire échouer le run.
 
-**Effet de bord assumé** : le motif `craft-.+` attrape aussi les dépôts
-d'outillage de l'organisation (`craft-wiki`, `craft-common-actions`,
-`craft-pr-review-tool`, `craft-repo-status-app`, `craft-ai-integrations`,
-`craft-contrib`, `craft-extensions`, `craft-skills`). Ils sont archivés comme
-les autres. Pour les écarter, ajoutez-les à `APPS_EXCLUDE` — c'est une liste
-séparée par des espaces.
+**Effet assumé** : `craft-.+` attrape aussi l'outillage de l'organisation
+(`craft-wiki`, `craft-common-actions`, `craft-skills`, `craft-contrib`,
+`craft-extensions`, `craft-pr-review-tool`, `craft-repo-status-app`,
+`craft-ai-integrations`). Ils sont archivés comme le reste. Pour les écarter,
+les ajouter à `APPS_EXCLUDE`.
+
+**Périmètre actuel : 30 dépôts archivés.**
+
+### Les dépôts utilitaires sont-ils nécessaires à la reconstruction ?
+
+Vérifié dans les `Cargo.toml` / `Cargo.lock` et la CI des applications :
+
+| Dépôt | Rôle | Nécessaire pour **reconstruire** ? |
+|---|---|---|
+| `craft-libs` | crates partagées (`craft-ui`, `craft-update`, `craft-proof`, `craft-docpath`…) | **Oui — obligatoire.** Dépendance `git` épinglée par révision dans chaque application. |
+| `craft-i18n` | données de langue (`language-data/`, `craft-i18n` crate) | **Oui.** Référencé par `Cargo.lock`, embarqué via `CRAFT_I18N_DIR`. |
+| `craft-fonts` | polices et `craft-fonts-build` | **Oui** pour les builds qui activent l'option polices (`CRAFT_FONTS_DIR`). |
+| `craft-common-actions` | workflow de gate partagé (`gate.yml`) | **Utile, pas de compilation** : sans lui la CI ne tourne pas, mais le code compile. |
+| `craft-extensions` | thèmes, plugins, contrat de paquet | Non (runtime / distribution). |
+| `craft-ai-integrations` | couche IA (connexions, fournisseurs, widgets) | Non — brique optionnelle. |
+| `craft-wiki`, `craft-skills`, `craft-contrib`, `craft-pr-review-tool`, `craft-repo-status-app` | documentation et outillage de développement | Non. |
+
+Donc : sur les 8 dépôts d'outillage, **3 sont indispensables** à une
+reconstruction fidèle, 1 sert à la CI, 4 sont du confort.
+
+### Angle mort connu : le fork `egui`
+
+Les applications dépendent de `storytold/egui` (fork d'egui, **79 Mo**),
+épinglé par révision — **14 références par application**, dans `photocraft`,
+`craft-launcher`, `wordcraft` et `vectorcraft`.
+
+Ce dépôt n'est **pas archivé**, parce que la découverte écarte volontairement
+les forks (`fork==true`). Sans lui, un rebuild échoue sur la résolution des
+dépendances.
+
+Contournement : ajouter `egui` à `DEFAULT_APPS`, ou autoriser explicitement les
+forks dans `discover`.
+
+---
+
+## Fonctionnement
+
+### Déclenchement : sondage toutes les 15 minutes
+
+Un vrai webhook est impossible : l'organisation `storytold` ne nous appartient
+pas, on ne peut pas y installer de hook. Le workflow
+`archive-storytold-complete.yml` sonde donc l'amont (`cron: */15 * * * *`) et
+compare la dernière release de chaque application à ce qui est déjà archivé :
+
+- **rien de nouveau** → sortie immédiate, aucun téléchargement ;
+- **nouvelle release** → archivage du code + du `.deb` ;
+- **release existante mais `.deb` manquant** → mise à jour de la release
+  (`gh release upload --clobber`), pas de doublon.
+
+Une version publiée en amont est donc capturée en général dans le quart d'heure.
+Les crons GitHub sont *best effort* : un retard de quelques minutes est normal.
+Le déclenchement manuel reste disponible (`Actions → Run workflow`).
 
 ### Rétention : `keep = 1`
 
 Seule la **dernière archive de chaque application** est conservée. À chaque
-nouvel archivage réussi, les releases `source/<app>/*` plus anciennes sont
-supprimées, tag git compris.
+archivage réussi, les releases `source/<app>/*` plus anciennes sont supprimées,
+tag git compris.
 
-Le paramètre `keep` est modifiable au lancement manuel (`keep=12` pour un an
-d'historique mensuel).
+La purge ne compare que des clés **de même nature** : une clé versionnée
+(`v0.22.0`) ne peut pas purger une clé SHA (`86f74b7`) et inversement.
 
 ### Suppression en amont : les archives sont conservées
 
-Trois cas, tous sans risque pour l'archive existante :
-
 | Ce qui disparaît | Ce que fait le workflow |
 |---|---|
-| **Un dépôt entier** | `gh api` échoue → `::warning::… introuvable en amont`, aucune archive n'est produite ni supprimée. L'archive existante reste intacte. |
-| **Une release** (le dépôt reste) | La clé bascule sur le SHA du commit, donc un nouveau tag `source/<app>/<sha7>` est créé — **et l'archive versionnée n'est pas purgée** : la rétention ne compare que des clés de même nature (version ↔ version, SHA ↔ SHA). |
-| **Un commit** (dépôt vidé) | `rev-list --all` = 0 → `::warning::aucun commit en amont`, sortie propre. |
+| **Un dépôt entier** | `gh api` échoue → `::warning::… introuvable en amont`, aucune archive produite ni supprimée. L'archive existante reste intacte. |
+| **Une release** (le dépôt reste) | La clé bascule sur le SHA du commit : un tag `source/<app>/<sha7>` est créé, **et l'archive versionnée n'est pas purgée**. |
+| **Tous les commits** | `rev-list --all` = 0 → `::warning::aucun commit en amont`, sortie propre. |
 
-La purge de rétention ne s'exécute qu'**après un archivage réussi** et ne
-touche jamais une clé d'une autre nature. Une application retirée de `storytold`
-conserve donc sa dernière archive dans ce dépôt — c'est précisément la raison
-d'être de ce coffre.
+La purge ne s'exécute qu'**après un archivage réussi**, et jamais sur une clé
+d'une autre nature. Une application retirée de `storytold` conserve donc sa
+dernière archive ici — c'est la raison d'être de ce coffre.
 
 ### Index
 
 `source-index.json` est régénéré à chaque passage et committé sur `main` :
-liste des archives avec version, taille du bundle et du `.deb`, et URL de
-téléchargement. C'est le point d'entrée pour une synchronisation externe
-(par exemple vers un AI Drive), sans avoir à interroger GitHub.
+version, taille du bundle, taille du `.deb`, URL de téléchargement. C'est le
+point d'entrée pour une synchronisation externe (par exemple vers un AI Drive),
+sans interroger GitHub.
 
 ---
 
@@ -142,7 +178,8 @@ téléchargement. C'est le point d'entrée pour une synchronisation externe
 
 | Élément | Statut |
 |---|---|
-| Binaires autres que le `.deb` x86_64 (`.dmg`, `.msi`, `.AppImage`, `.rpm`, `.flatpak`, aarch64, riscv64) | **non archivés** — choix explicite, seul x86_64 est conservé |
+| Binaires autres que le `.deb` x86_64 (`.dmg`, `.msi`, `.AppImage`, `.rpm`, `.flatpak`, aarch64, riscv64) | **non archivés** — seul x86_64 est conservé, par choix |
+| Fork `storytold/egui` (dépendance de build) | **non archivé** — exclu par le filtre forks |
 | Issues, pull requests, commentaires, revues | non archivés (métadonnées GitHub, pas des objets git) |
 | Wiki, étoiles, réglages, secrets Actions | non archivés |
 | Objets Git LFS | inclus uniquement s'ils sont matérialisés dans le dépôt |
