@@ -4,14 +4,14 @@ name: Archive storytold source + deb
 #   - le code : bundle git (toutes refs, historique complet)
 #   - le paquet : .deb linux-x86_64 de la release
 #
-# Déclenchement : sondage toutes les 15 minutes. Chaque passage compare la
+# Déclenchement : une fois par jour (03:00 UTC). Chaque passage compare la
 # dernière release amont à ce qui est déjà archivé ; seules les applications
 # ayant une NOUVELLE release (ou un .deb manquant) sont traitées.
 # Les autres sortent immédiatement — coût d'un passage à vide : quelques secondes.
 
 on:
   schedule:
-    - cron: "*/15 * * * *"
+    - cron: "0 3 * * *"
   workflow_dispatch:
     inputs:
       apps:

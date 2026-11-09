@@ -150,21 +150,23 @@ uniquement dans un crate imbriqué serait manquée — d'où le maintien de
 
 ## Fonctionnement
 
-### Déclenchement : sondage toutes les 15 minutes
+### Déclenchement : une fois par jour
 
 Un vrai webhook est impossible : l'organisation `storytold` ne nous appartient
 pas, on ne peut pas y installer de hook. Le workflow
-`archive-storytold-complete.yml` sonde donc l'amont (`cron: */15 * * * *`) et
-compare la dernière release de chaque application à ce qui est déjà archivé :
+`archive-storytold-complete.yml` sonde donc l'amont (`cron: 0 3 * * *`, une fois
+par jour à 03:00 UTC) et compare la dernière release de chaque application à ce
+qui est déjà archivé :
 
 - **rien de nouveau** → sortie immédiate, aucun téléchargement ;
 - **nouvelle release** → archivage du code + du `.deb` ;
 - **release existante mais `.deb` manquant** → mise à jour de la release
   (`gh release upload --clobber`), pas de doublon.
 
-Une version publiée en amont est donc capturée en général dans le quart d'heure.
-Les crons GitHub sont *best effort* : un retard de quelques minutes est normal.
-Le déclenchement manuel reste disponible (`Actions → Run workflow`).
+Une version publiée en amont est donc capturée au passage quotidien suivant, avec
+au plus 24 h de décalage. Les crons GitHub sont *best effort* : un retard de
+quelques minutes est normal. Le déclenchement manuel reste disponible
+(`Actions → Run workflow`).
 
 ### Rétention : `keep = 1`
 
