@@ -73,8 +73,11 @@ jobs:
             sha="$(gh api "repos/$UPSTREAM_ORG/$app/commits/$branch" --jq '.sha')"
 
             # Version de référence : le tag de release amont, sinon le SHA court.
-            rtag="$(gh api "repos/$UPSTREAM_ORG/$app/releases/latest" --jq '.tag_name' 2>/dev/null || true)"
-            if [ -z "$rtag" ] || [ "$rtag" = "null" ]; then
+            # Attention : sur un dépôt sans release, gh api peut renvoyer le corps
+            # d'erreur JSON sur stdout — on valide donc le format du tag.
+            rtag="$(gh api "repos/$UPSTREAM_ORG/$app/releases/latest" --jq '.tag_name // empty' 2>/dev/null || true)"
+            if ! printf '%s' "$rtag" | grep -qE '^[A-Za-z0-9._/-]+$'; then rtag=""; fi
+            if [ -z "$rtag" ]; then
               key="${sha:0:7}"; want_deb=false
             else
               key="$rtag"; want_deb=true
