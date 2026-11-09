@@ -129,12 +129,12 @@ jobs:
           echo "$NB_REFS refs : $NB_BRANCHES branches, $NB_TAGS tags"
 
           # Bundle autonome, toutes refs, avec la ref de tête comme point d'entrée.
-          BUNDLE="../${APP}-${SHORT}.bundle"
+          BUNDLE="$PWD/../${APP}-${SHORT}.bundle"
           git bundle create "$BUNDLE" --all "HEAD"
-          cd ..
 
-          # Le bundle doit se vérifier : `git bundle verify` échoue si une ref manque.
+          # `git bundle verify` exige un dépôt : on le lance depuis le miroir.
           git bundle verify "$BUNDLE" | tail -3
+          cd ..
           BUNDLE_SHA=$(sha256sum "$BUNDLE" | cut -d' ' -f1)
           BUNDLE_MB=$(du -m "$BUNDLE" | cut -f1)
           echo "bundle : ${BUNDLE_MB} Mo, sha256 ${BUNDLE_SHA:0:16}…"
