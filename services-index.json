@@ -1,1 +1,12 @@
-[]
+[
+  {
+    "archived_at": "2026-11-09T22:02:43Z",
+    "bundle": {
+      "name": "artcraft-services-0a2dc72.bundle",
+      "size": 1354769766,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/artcraft-services/0a2dc72/artcraft-services-0a2dc72.bundle"
+    },
+    "head": "0a2dc72",
+    "tag": "source/artcraft-services/0a2dc72"
+  }
+]
