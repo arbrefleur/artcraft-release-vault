@@ -191,8 +191,57 @@ dernière archive ici — c'est la raison d'être de ce coffre.
 
 `source-index.json` est régénéré à chaque passage et committé sur `main` :
 version, taille du bundle, taille du `.deb`, URL de téléchargement. C'est le
-point d'entrée pour une synchronisation externe (par exemple vers un AI Drive),
-sans interroger GitHub.
+point d'entrée pour une synchronisation externe, sans interroger GitHub.
+
+---
+
+## Synchronisation vers un AI Drive Genspark
+
+### Pourquoi ce n'est pas dans le workflow
+
+Un runner GitHub Actions **ne peut pas écrire dans l'AI Drive** : il n'existe
+pas d'API publique, et le jeton du CLI `gsk` n'est pas disponible en CI. La
+recopie est donc un **étage 2**, exécuté là où `gsk` est authentifié : sandbox
+Genspark, agent, ou poste local.
+
+```
+storytold ──(cron 15 min)──▶ coffre GitHub ──(étage 2)──▶ AI Drive
+                             source-index.json             /artcraft/vault/
+```
+
+### Le script
+
+`sync-vault-to-aidrive.py` lit `source-index.json`, télécharge les assets des
+releases et les dépose dans l'AI Drive :
+
+```bash
+./sync-vault-to-aidrive.py --dry-run                    # plan et volumes
+./sync-vault-to-aidrive.py --apps craft-launcher,anicraft
+./sync-vault-to-aidrive.py --all --dest /artcraft/vault
+```
+
+Arborescence produite :
+
+```
+/artcraft/vault/<app>/<version>/
+    <app>-<sha>.bundle
+    <app>-<version>-linux-x86_64.deb
+/artcraft/vault/MANIFEST-aidrive.json
+```
+
+Volume complet mesuré : **4 037 Mo pour 52 fichiers** (34 applications). Le
+paramètre `--max-mb` (défaut 800) écarte les fichiers trop gros ; `--dry-run`
+affiche le plan sans rien envoyer.
+
+### Déclenchement
+
+| Voie | Mise en place |
+|---|---|
+| Agent Genspark / Genspark Workflow planifié | exécuter `--all` après le passage du coffre |
+| Poste local | cron système ou lancement manuel |
+| Caisse à outils Genspark | demander l'exécution dans une session |
+
+Le script est idempotent : relancer écrase les mêmes chemins, sans doublon.
 
 ---
 

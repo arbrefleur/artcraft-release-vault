@@ -124,18 +124,22 @@ jobs:
             done
             found="$(sort -u deps_raw.txt | sed '/^$/d')"
             echo "  dépendances déclarées : $(echo $found | tr '\n' ' ')"
+            apps_lc=" $(echo $apps | tr '[:upper:]' '[:lower:]') "
             for dep in $found; do
-              case " $apps " in *" $dep "*) continue ;; esac
-              case " $APPS_EXCLUDE " in *" $dep "*) continue ;; esac
-              if gh api "repos/$UPSTREAM_ORG/$dep" --jq '.archived' >/dev/null 2>&1; then
-                echo "  + $dep (dépendance, hors périmètre initial)"
-                apps="$apps $dep"
-              else
-                echo "  - $dep ignoré (n'existe pas dans l'organisation)"
+              # résolution du nom canonique : la casse ne doit pas créer de doublon
+              cdep="$(gh api "repos/$UPSTREAM_ORG/$dep" --jq '.name' 2>/dev/null || true)"
+              if [ -z "$cdep" ]; then
+                echo "  - $dep ignoré (n'existe pas dans l'organisation)"; continue
               fi
+              dep_lc="$(echo "$cdep" | tr '[:upper:]' '[:lower:]')"
+              case "$apps_lc" in *" $dep_lc "*) continue ;; esac
+              case " $(echo $APPS_EXCLUDE | tr '[:upper:]' '[:lower:]') " in *" $dep_lc "*) continue ;; esac
+              echo "  + $cdep (dépendance, hors périmètre initial)"
+              apps="$apps $cdep"
+              apps_lc="$apps_lc $dep_lc "
             done
             apps="$apps $DEP_REPOS"
-            apps="$(echo $apps | tr ' ' '\n' | sed '/^$/d' | sort -u | tr '\n' ' ')"
+            apps="$(echo $apps | tr ' ' '\n' | sed '/^$/d' | awk '!seen[tolower($0)]++' | tr '\n' ' ')"
             echo "périmètre élargi : $(echo $apps | wc -w) dépôt(s)"
             if [ "$(echo $apps | wc -w)" -gt "$MAX_REPOS" ]; then
               echo "::error::périmètre de $(echo $apps | wc -w) dépôts dépasse MAX_REPOS=$MAX_REPOS"
@@ -148,6 +152,12 @@ jobs:
             if ! gh api "repos/$UPSTREAM_ORG/$app" > meta.json 2>/dev/null; then
               echo "::warning::$app introuvable en amont — ignoré"; continue
             fi
+            # Nom canonique : GitHub est insensible à la casse, donc "AniCraft"
+            # et "anicraft" désignent le même dépôt. On normalise pour éviter
+            # deux archives du même contenu.
+            canon="$(jq -r '.name' meta.json)"
+            [ "$canon" != "$app" ] && echo "$app → nom canonique : $canon"
+            app="$canon"
             branch="$(jq -r '.default_branch' meta.json)"
             sha="$(gh api "repos/$UPSTREAM_ORG/$app/commits/$branch" --jq '.sha' 2>/dev/null || true)"
             if [ -z "$sha" ]; then
