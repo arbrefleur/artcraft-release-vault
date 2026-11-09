@@ -111,18 +111,27 @@ Vérifié dans les `Cargo.toml` / `Cargo.lock` et la CI des applications :
 Donc : sur les 8 dépôts d'outillage, **3 sont indispensables** à une
 reconstruction fidèle, 1 sert à la CI, 4 sont du confort.
 
-### Angle mort connu : le fork `egui`
+### Angle mort comblé : les dépendances de build
 
-Les applications dépendent de `storytold/egui` (fork d'egui, **79 Mo**),
-épinglé par révision — **14 références par application**, dans `photocraft`,
-`craft-launcher`, `wordcraft` et `vectorcraft`.
+Les applications dépendent de dépôts externes épinglés par révision dans leurs
+`Cargo.toml`. Trois sont des **forks** de l'organisation — exclus de la
+découverte automatique (qui écarte les forks) mais indispensables à un rebuild.
+Ils sont donc archivés explicitement via `DEP_REPOS` :
 
-Ce dépôt n'est **pas archivé**, parce que la découverte écarte volontairement
-les forks (`fork==true`). Sans lui, un rebuild échoue sur la résolution des
-dépendances.
+| Dépôt | Applications dépendantes | Origine amont |
+|---|---|---|
+| `egui` | 16 | fork de `emilk/egui` |
+| `winit` | 16 | fork de `rust-windowing/winit` |
+| `winprint.rs` | 6 | fork de `ArcticLampyrid/winprint.rs` |
+| `indd-utils` | designcraft | dépôt propre (pas un fork) |
 
-Contournement : ajouter `egui` à `DEFAULT_APPS`, ou autoriser explicitement les
-forks dans `discover`.
+Relevé fait dans les `Cargo.toml` et `Cargo.lock` des 18 applications : 14
+références à `storytold/egui` et autant à `storytold/winit` par application.
+
+`wgpu` et `spark` sont aussi des forks de l'organisation, mais **aucune
+application ne les référence** : volontairement non archivés.
+
+Pour ajouter une dépendance future : une ligne dans `DEP_REPOS` du workflow.
 
 ---
 
