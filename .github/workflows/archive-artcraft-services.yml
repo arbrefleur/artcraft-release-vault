@@ -1,0 +1,194 @@
+name: Archive artcraft-services
+
+# Archivage DÉDIÉ du dépôt `storytold/artcraft-services` — backend, API HTTP,
+# workers et frontends web d'ArtCraft. Monorepo Rust/TypeScript, ~1,3 Go de
+# données git : il est isolé du workflow des applications pour ne pas peser sur
+# le passage quotidien des 34 dépôts `*craft`.
+#
+# Rétention volontairement plus large (keep=3) : ce dépôt n'a ni release ni
+# versionnement, la clé d'archive est donc le SHA du commit (état courant à date).
+# Conserver plusieurs états dans le temps est ici plus utile qu'ailleurs.
+
+on:
+  schedule:
+    # Une fois par semaine, lundi 04:00 UTC (une heure après le passage des apps).
+    - cron: "0 4 * * 1"
+  workflow_dispatch:
+    inputs:
+      keep:
+        description: "Archives conservées (défaut 3)"
+        required: false
+        default: "3"
+      force:
+        description: "Réarchiver même si le SHA est déjà présent"
+        type: boolean
+        required: false
+        default: false
+
+concurrency:
+  group: archive-artcraft-services
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+env:
+  UPSTREAM_ORG: storytold
+  APP: artcraft-services
+  KEEP_DEFAULT: "3"
+
+jobs:
+  archive:
+    runs-on: ubuntu-latest
+    # Le monorepo est volumineux : marge confortable sur le clone et le bundle.
+    timeout-minutes: 90
+    steps:
+      - name: Contrôler l'état amont
+        id: head
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          if ! gh api "repos/$UPSTREAM_ORG/$APP" > meta.json 2>/dev/null; then
+            echo "::warning::$APP introuvable en amont — rien à archiver"
+            echo "skip=true" >> "$GITHUB_OUTPUT"; exit 0
+          fi
+          BRANCH="$(jq -r '.default_branch' meta.json)"
+          SHA="$(gh api "repos/$UPSTREAM_ORG/$APP/commits/$BRANCH" --jq '.sha')"
+          SHORT="${SHA:0:7}"
+          TAG="source/$APP/$SHORT"
+          echo "branch=$BRANCH" >> "$GITHUB_OUTPUT"
+          echo "sha=$SHA"       >> "$GITHUB_OUTPUT"
+          echo "tag=$TAG"       >> "$GITHUB_OUTPUT"
+          echo "amont : $BRANCH @ $SHORT"
+
+          if gh release view "$TAG" --repo "${{ github.repository }}" >/dev/null 2>&1; then
+            if [ "${{ inputs.force || 'false' }}" != "true" ]; then
+              echo "$TAG déjà archivé — rien à faire"
+              echo "skip=true" >> "$GITHUB_OUTPUT"
+            fi
+          fi
+
+      - name: Clone miroir et bundle
+        if: steps.head.outputs.skip != 'true'
+        env:
+          SHA: ${{ steps.head.outputs.sha }}
+          BRANCH: ${{ steps.head.outputs.branch }}
+          TAG: ${{ steps.head.outputs.tag }}
+          KEEP: ${{ inputs.keep || '3' }}
+          TARGET_REPO: ${{ github.repository }}
+        run: |
+          set -euo pipefail
+          SHORT="${SHA:0:7}"
+          WORK="$RUNNER_TEMP/work"
+          mkdir -p "$WORK/assets"
+          OUT="$WORK/assets"
+          cd "$WORK"
+
+          echo "== clone --mirror de $UPSTREAM_ORG/$APP (dépôt volumineux)"
+          if ! git clone --quiet --mirror "https://github.com/$UPSTREAM_ORG/$APP.git" repo.git 2>/dev/null; then
+            echo "::error::clone impossible"; exit 1
+          fi
+          if [ "$(git -C repo.git rev-list --all --count)" = "0" ]; then
+            echo "::warning::aucun commit en amont"; exit 0
+          fi
+
+          git -C repo.git for-each-ref --format='%(refname) %(objectname)' > refs.txt
+          NB_REFS=$(wc -l < refs.txt)
+          NB_BRANCHES=$(grep -c '^refs/heads/' refs.txt || true)
+          NB_TAGS=$(grep -c '^refs/tags/' refs.txt || true)
+          COMMITS=$(git -C repo.git rev-list --all --count)
+          echo "$NB_REFS refs : $NB_BRANCHES branches, $NB_TAGS tags, $COMMITS commits"
+
+          BUNDLE="$OUT/${APP}-${SHORT}.bundle"
+          git -C repo.git bundle create "$BUNDLE" --all HEAD
+          ( cd repo.git && git bundle verify "$BUNDLE" | tail -2 )
+
+          BUNDLE_SHA=$(sha256sum "$BUNDLE" | cut -d' ' -f1)
+          BUNDLE_BYTES=$(stat -c %s "$BUNDLE")
+          echo "bundle : $((BUNDLE_BYTES/1048576)) Mo"
+
+          # Garde-fou : la limite GitHub est de 2 GiB par fichier d'asset.
+          LIMIT=$((2 * 1024 * 1024 * 1024))
+          if [ "$BUNDLE_BYTES" -ge "$LIMIT" ]; then
+            echo "::error::bundle de $((BUNDLE_BYTES/1048576)) Mo ≥ limite 2 GiB d'un asset GitHub"
+            echo "::error::réduire la portée (--single-branch) ou découper l'archive"
+            exit 1
+          fi
+
+          cat > "$OUT/MANIFEST.json" <<JSON
+          {
+            "upstream": "https://github.com/$UPSTREAM_ORG/$APP",
+            "role": "backend, HTTP API, workers et frontends web d'ArtCraft (monorepo Rust/TypeScript)",
+            "upstream_default_branch": "$BRANCH",
+            "upstream_head": "$SHA",
+            "archived_at": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "workflow_run": "$GITHUB_SERVER_URL/$TARGET_REPO/actions/runs/$GITHUB_RUN_ID",
+            "code": {"refs_total": $NB_REFS, "branches": $NB_BRANCHES, "tags": $NB_TAGS,
+                     "commits": $COMMITS, "bundle": "$(basename "$BUNDLE")",
+                     "bundle_bytes": $BUNDLE_BYTES, "bundle_sha256": "$BUNDLE_SHA"},
+            "restore_code": ["git clone $(basename "$BUNDLE") $APP",
+                             "cd $APP && git remote set-url origin https://github.com/<vous>/$APP.git",
+                             "git push --mirror origin"]
+          }
+          JSON
+
+          if gh release view "$TAG" --repo "$TARGET_REPO" >/dev/null 2>&1; then
+            gh release upload "$TAG" "$OUT"/* refs.txt --repo "$TARGET_REPO" --clobber
+          else
+            gh release create "$TAG" "$OUT"/* refs.txt \
+              --repo "$TARGET_REPO" \
+              --title "$APP @ $SHORT" \
+              --notes "Archive de github.com/$UPSTREAM_ORG/$APP à \`$SHORT\` ($BRANCH).
+          **Rôle** : backend, API HTTP, workers et frontends web d'ArtCraft.
+          **Code** : bundle git toutes refs ($NB_BRANCHES branches, $NB_TAGS tags, $COMMITS commits).
+          Restauration : \`git clone <bundle>\` puis \`git push --mirror\`."
+          fi
+
+          # --- Rétention ---------------------------------------------------
+          if [ "$KEEP" -gt 0 ]; then
+            echo "rétention : $KEEP archive(s)"
+            gh api "repos/$TARGET_REPO/releases?per_page=100" \
+              --jq "[.[] | select(.tag_name | startswith(\"source/$APP/\"))]
+                     | map({t: .tag_name, c: .created_at, v: (.tag_name | split(\"/\")[2])})
+                     | map(select(.v | test(\"^[0-9a-f]{7,40}$\")))
+                     | sort_by(.c) | reverse | .[$KEEP:] | .[].t" \
+              | while read -r old; do
+                  [ -n "$old" ] || continue
+                  echo "purge $old"
+                  gh release delete "$old" --repo "$TARGET_REPO" --yes --cleanup-tag || true
+                done
+          fi
+
+  index:
+    needs: archive
+    if: always()
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 1
+
+      - name: Régénérer services-index.json
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          gh api "repos/${{ github.repository }}/releases?per_page=100" --paginate \
+            --jq '[.[] | select(.tag_name | startswith("source/artcraft-services/"))
+                   | {tag: .tag_name, head: (.tag_name | split("/")[2]), archived_at: .created_at,
+                      bundle: ([.assets[] | select(.name | endswith(".bundle")) | {name, size, url: .browser_download_url}][0])}]' \
+            | jq -s 'add // [] | sort_by(.archived_at) | reverse' > services-index.json
+          echo "services-index.json : $(jq length services-index.json) archive(s)"
+
+      - name: Commit
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add services-index.json
+          if git diff --cached --quiet; then
+            date -u > .keepalive
+            git add .keepalive
+          fi
+          git commit -m "chore: index services $(date -u +%Y-%m-%dT%H:%MZ)" || true
+          git push || echo "::warning::rien à pousser"

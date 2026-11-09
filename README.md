@@ -197,6 +197,25 @@ point d'entrée pour une synchronisation externe, sans interroger GitHub.
 
 ---
 
+---
+
+## Dépôt dédié : `artcraft-services`
+
+Le backend d'ArtCraft (API HTTP `storyteller-web`, workers, frontends web,
+monorepo Rust/TypeScript, ~1,3 Go de données git) est archivé par un **workflow
+séparé**, `archive-artcraft-services.yml`, pour ne pas peser sur le passage
+quotidien des applications.
+
+| Élément | Valeur |
+|---|---|
+| Déclenchement | lundi 04:00 UTC, plus manuel |
+| Tag d'archive | `source/artcraft-services/<sha7>` |
+| Rétention | 3 archives (le dépôt n'a ni release ni versionnement) |
+| Index | `services-index.json` |
+
+Il ne s'agit pas d'une dépendance de compilation : aucune application ne le
+référence. C'est la brique serveur du produit, archivée pour elle-même.
+
 ## Limites connues
 
 | Élément | Statut |
