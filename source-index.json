@@ -1,1 +1,13 @@
-[]
+[
+  {
+    "app": "craft-launcher",
+    "archived_at": "2026-11-09T20:42:36Z",
+    "bundle": {
+      "name": "craft-launcher-f4eb7d4.bundle",
+      "size": 28885986,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/f4eb7d4/craft-launcher-f4eb7d4.bundle"
+    },
+    "tag": "source/craft-launcher/f4eb7d4",
+    "upstream_head": "f4eb7d4"
+  }
+]
