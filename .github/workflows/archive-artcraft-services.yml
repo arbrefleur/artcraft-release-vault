@@ -72,6 +72,7 @@ jobs:
       - name: Clone miroir et bundle
         if: steps.head.outputs.skip != 'true'
         env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SHA: ${{ steps.head.outputs.sha }}
           BRANCH: ${{ steps.head.outputs.branch }}
           TAG: ${{ steps.head.outputs.tag }}
