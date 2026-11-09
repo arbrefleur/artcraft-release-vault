@@ -108,14 +108,18 @@ d'historique mensuel).
 
 ### Suppression en amont : les archives sont conservées
 
-Si un dépôt ou une release disparaît de `storytold`, le sondage le signale
-(`::warning::… introuvable en amont`) et **passe à la suite sans rien supprimer**.
-La purge de rétention ne s'exécute qu'après un archivage réussi, pour
-l'application concernée. Une application supprimée en amont garde donc sa
-dernière archive dans ce dépôt.
+Trois cas, tous sans risque pour l'archive existante :
 
-C'est le comportement voulu : ce coffre existe précisément pour survivre à la
-disparition de la source.
+| Ce qui disparaît | Ce que fait le workflow |
+|---|---|
+| **Un dépôt entier** | `gh api` échoue → `::warning::… introuvable en amont`, aucune archive n'est produite ni supprimée. L'archive existante reste intacte. |
+| **Une release** (le dépôt reste) | La clé bascule sur le SHA du commit, donc un nouveau tag `source/<app>/<sha7>` est créé — **et l'archive versionnée n'est pas purgée** : la rétention ne compare que des clés de même nature (version ↔ version, SHA ↔ SHA). |
+| **Un commit** (dépôt vidé) | `rev-list --all` = 0 → `::warning::aucun commit en amont`, sortie propre. |
+
+La purge de rétention ne s'exécute qu'**après un archivage réussi** et ne
+touche jamais une clé d'une autre nature. Une application retirée de `storytold`
+conserve donc sa dernière archive dans ce dépôt — c'est précisément la raison
+d'être de ce coffre.
 
 ### Index
 

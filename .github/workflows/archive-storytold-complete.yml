@@ -253,9 +253,18 @@ jobs:
           || { echo "::error::publication impossible pour $TAG"; exit 1; }
 
           # --- Rétention : KEEP archives par application --------------------
+          # Ne purge QUE des archives de même nature que celle qu'on vient de
+          # publier. Sans ce garde-fou, la disparition d'une release amont
+          # ferait basculer la clé sur le SHA du commit et la purge
+          # supprimerait l'archive versionnée encore valable.
           if [ "$KEEP" -gt 0 ]; then
-            gh api "repos/$TARGET_REPO/releases?per_page=100" --paginate \
-              --jq "[.[] | select(.tag_name | startswith(\"source/$APP/\"))] | sort_by(.created_at) | reverse | .[$KEEP:] | .[].tag_name" \
+            if printf '%s' "$KEY" | grep -qE '^[0-9a-f]{7,40}$'; then JQSHACMP=true; else JQSHACMP=false; fi
+            echo "rétention : keep=$KEEP, purge limitée aux clés $( [ "$JQSHACMP" = true ] && echo 'SHA' || echo 'versionnées')"
+            gh api "repos/$TARGET_REPO/releases?per_page=100" \
+              --jq "[.[] | select(.tag_name | startswith(\"source/$APP/\"))
+                     | {t: .tag_name, c: .created_at, v: (.tag_name | split(\"/\")[2])}]
+                     | map(select((.v | test(\"^[0-9a-f]{7,40}$\")) == $JQSHACMP))
+                     | sort_by(.c) | reverse | .[$KEEP:] | .[].t" \
               | while read -r old; do
                   [ -n "$old" ] || continue
                   echo "purge $old"
