@@ -1,5 +1,81 @@
 [
   {
+    "app": "anicraft",
+    "archived_at": "2026-11-09T22:04:36Z",
+    "bundle": {
+      "name": "anicraft-96ff336.bundle",
+      "size": 8586212,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/anicraft/96ff336/anicraft-96ff336.bundle"
+    },
+    "deb": null,
+    "tag": "source/anicraft/96ff336",
+    "version": "96ff336"
+  },
+  {
+    "app": "craft-libs",
+    "archived_at": "2026-11-09T22:04:36Z",
+    "bundle": {
+      "name": "craft-libs-0e4943c.bundle",
+      "size": 109381214,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/0e4943c/craft-libs-0e4943c.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-libs/0e4943c",
+    "version": "0e4943c"
+  },
+  {
+    "app": "craft-wiki",
+    "archived_at": "2026-11-09T22:04:36Z",
+    "bundle": {
+      "name": "craft-wiki-826d296.bundle",
+      "size": 35335372,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-wiki/826d296/craft-wiki-826d296.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-wiki/826d296",
+    "version": "826d296"
+  },
+  {
+    "app": "effectcraft",
+    "archived_at": "2026-11-09T22:04:36Z",
+    "bundle": {
+      "name": "effectcraft-6a105aa.bundle",
+      "size": 75026898,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/effectcraft/v0.23.1/effectcraft-6a105aa.bundle"
+    },
+    "deb": {
+      "name": "effectcraft-0.23.1-linux-x86_64.deb",
+      "size": 83263308,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/effectcraft/v0.23.1/effectcraft-0.23.1-linux-x86_64.deb"
+    },
+    "tag": "source/effectcraft/v0.23.1",
+    "version": "v0.23.1"
+  },
+  {
+    "app": "winprint.rs",
+    "archived_at": "2026-11-09T22:04:36Z",
+    "bundle": {
+      "name": "winprint.rs-3c978df.bundle",
+      "size": 16969386,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/winprint.rs/3c978df/winprint.rs-3c978df.bundle"
+    },
+    "deb": null,
+    "tag": "source/winprint.rs/3c978df",
+    "version": "3c978df"
+  },
+  {
+    "app": "artcraft-services",
+    "archived_at": "2026-11-09T22:02:43Z",
+    "bundle": {
+      "name": "artcraft-services-0a2dc72.bundle",
+      "size": 1354769766,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/artcraft-services/0a2dc72/artcraft-services-0a2dc72.bundle"
+    },
+    "deb": null,
+    "tag": "source/artcraft-services/0a2dc72",
+    "version": "0a2dc72"
+  },
+  {
     "app": "egui",
     "archived_at": "2026-11-09T21:23:11Z",
     "bundle": {
@@ -34,18 +110,6 @@
     "deb": null,
     "tag": "source/winit/f0a8348",
     "version": "f0a8348"
-  },
-  {
-    "app": "winprint.rs",
-    "archived_at": "2026-11-09T21:23:11Z",
-    "bundle": {
-      "name": "winprint.rs-ea03a9d.bundle",
-      "size": 16968451,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/winprint.rs/ea03a9d/winprint.rs-ea03a9d.bundle"
-    },
-    "deb": null,
-    "tag": "source/winprint.rs/ea03a9d",
-    "version": "ea03a9d"
   },
   {
     "app": "craft-ai-integrations",
@@ -132,30 +196,6 @@
     "version": "2a55dce"
   },
   {
-    "app": "craft-wiki",
-    "archived_at": "2026-11-09T21:12:58Z",
-    "bundle": {
-      "name": "craft-wiki-7fdb6b8.bundle",
-      "size": 35298130,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-wiki/7fdb6b8/craft-wiki-7fdb6b8.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-wiki/7fdb6b8",
-    "version": "7fdb6b8"
-  },
-  {
-    "app": "anicraft",
-    "archived_at": "2026-11-09T20:59:41Z",
-    "bundle": {
-      "name": "anicraft-86f74b7.bundle",
-      "size": 8066508,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/anicraft/86f74b7/anicraft-86f74b7.bundle"
-    },
-    "deb": null,
-    "tag": "source/anicraft/86f74b7",
-    "version": "86f74b7"
-  },
-  {
     "app": "craft-fonts",
     "archived_at": "2026-11-09T20:59:41Z",
     "bundle": {
@@ -178,18 +218,6 @@
     "deb": null,
     "tag": "source/craft-launcher-assets/8619bde",
     "version": "8619bde"
-  },
-  {
-    "app": "craft-libs",
-    "archived_at": "2026-11-09T20:59:41Z",
-    "bundle": {
-      "name": "craft-libs-1b34eba.bundle",
-      "size": 107962149,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/1b34eba/craft-libs-1b34eba.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-libs/1b34eba",
-    "version": "1b34eba"
   },
   {
     "app": "cadcraft",
@@ -282,22 +310,6 @@
     },
     "tag": "source/designcraft/v0.19.0",
     "version": "v0.19.0"
-  },
-  {
-    "app": "effectcraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "effectcraft-1197414.bundle",
-      "size": 74523763,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/effectcraft/v0.23.0/effectcraft-1197414.bundle"
-    },
-    "deb": {
-      "name": "effectcraft-0.23.0-linux-x86_64.deb",
-      "size": 82991038,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/effectcraft/v0.23.0/effectcraft-0.23.0-linux-x86_64.deb"
-    },
-    "tag": "source/effectcraft/v0.23.0",
-    "version": "v0.23.0"
   },
   {
     "app": "figcraft",
