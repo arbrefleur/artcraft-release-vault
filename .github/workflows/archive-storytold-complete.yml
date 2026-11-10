@@ -4,14 +4,16 @@ name: Archive storytold source + deb
 #   - le code : bundle git (toutes refs, historique complet)
 #   - le paquet : .deb linux-x86_64 de la release
 #
-# Déclenchement : une fois par jour (03:00 UTC). Chaque passage compare la
+# Déclenchement : une fois par jour à 04:00 (Europe/Paris). Chaque passage compare la
 # dernière release amont à ce qui est déjà archivé ; seules les applications
 # ayant une NOUVELLE release (ou un .deb manquant) sont traitées.
 # Les autres sortent immédiatement — coût d'un passage à vide : quelques secondes.
 
 on:
   schedule:
-    - cron: "0 3 * * *"
+    # 04:00 heure de Paris (fuseau géré par GitHub, DST compris).
+    - cron: "0 4 * * *"
+      timezone: "Europe/Paris"
   workflow_dispatch:
     inputs:
       apps:

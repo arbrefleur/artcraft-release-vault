@@ -11,8 +11,9 @@ name: Archive artcraft-services
 
 on:
   schedule:
-    # Une fois par semaine, lundi 04:00 UTC (une heure après le passage des apps).
-    - cron: "0 4 * * 1"
+    # Lundi 05:00 heure de Paris (une heure après le passage des apps).
+    - cron: "0 5 * * 1"
+      timezone: "Europe/Paris"
   workflow_dispatch:
     inputs:
       keep:

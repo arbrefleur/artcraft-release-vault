@@ -154,8 +154,8 @@ uniquement dans un crate imbriqué serait manquée — d'où le maintien de
 
 Un vrai webhook est impossible : l'organisation `storytold` ne nous appartient
 pas, on ne peut pas y installer de hook. Le workflow
-`archive-storytold-complete.yml` sonde donc l'amont (`cron: 0 3 * * *`, une fois
-par jour à 03:00 UTC) et compare la dernière release de chaque application à ce
+`archive-storytold-complete.yml` sonde donc l'amont (`cron: 0 4 * * *`,
+`timezone: Europe/Paris`, une fois par jour à 04:00 heure de Paris) et compare la dernière release de chaque application à ce
 qui est déjà archivé :
 
 - **rien de nouveau** → sortie immédiate, aucun téléchargement ;
@@ -208,7 +208,7 @@ quotidien des applications.
 
 | Élément | Valeur |
 |---|---|
-| Déclenchement | lundi 04:00 UTC, plus manuel |
+| Déclenchement | lundi 05:00 (Europe/Paris), plus manuel |
 | Tag d'archive | `source/artcraft-services/<sha7>` |
 | Rétention | 3 archives (le dépôt n'a ni release ni versionnement) |
 | Index | `services-index.json` |
