@@ -1,15 +1,31 @@
 [
   {
     "app": "anicraft",
-    "archived_at": "2026-11-09T22:04:36Z",
+    "archived_at": "2026-11-10T05:58:17Z",
     "bundle": {
-      "name": "anicraft-96ff336.bundle",
-      "size": 8586212,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/anicraft/96ff336/anicraft-96ff336.bundle"
+      "name": "anicraft-cae2150.bundle",
+      "size": 8311753,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/anicraft/cae2150/anicraft-cae2150.bundle"
     },
     "deb": null,
-    "tag": "source/anicraft/96ff336",
-    "version": "96ff336"
+    "tag": "source/anicraft/cae2150",
+    "version": "cae2150"
+  },
+  {
+    "app": "craft-launcher",
+    "archived_at": "2026-11-10T05:58:17Z",
+    "bundle": {
+      "name": "craft-launcher-753a710.bundle",
+      "size": 29427772,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.18.0/craft-launcher-753a710.bundle"
+    },
+    "deb": {
+      "name": "artcraft-launcher-0.18.0-linux-x86_64.deb",
+      "size": 13925120,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.18.0/artcraft-launcher-0.18.0-linux-x86_64.deb"
+    },
+    "tag": "source/craft-launcher/v0.18.0",
+    "version": "v0.18.0"
   },
   {
     "app": "craft-libs",
@@ -262,22 +278,6 @@
     "deb": null,
     "tag": "source/craft-i18n/language-packs-2",
     "version": "language-packs-2"
-  },
-  {
-    "app": "craft-launcher",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "craft-launcher-f4eb7d4.bundle",
-      "size": 28885986,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.17.0/craft-launcher-f4eb7d4.bundle"
-    },
-    "deb": {
-      "name": "artcraft-launcher-0.17.0-linux-x86_64.deb",
-      "size": 13896206,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.17.0/artcraft-launcher-0.17.0-linux-x86_64.deb"
-    },
-    "tag": "source/craft-launcher/v0.17.0",
-    "version": "v0.17.0"
   },
   {
     "app": "deckcraft",
