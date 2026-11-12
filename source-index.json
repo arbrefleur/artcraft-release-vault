@@ -1,43 +1,399 @@
 [
   {
     "app": "anicraft",
-    "archived_at": "2026-11-10T12:04:44Z",
+    "archived_at": "2026-11-11T09:58:21Z",
     "bundle": {
-      "name": "anicraft-6f315a6.bundle",
-      "size": 10484358,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/anicraft/v0.1.0/anicraft-6f315a6.bundle"
+      "name": "anicraft-9e49ae9.bundle",
+      "size": 12804974,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/anicraft/v0.2.1/anicraft-9e49ae9.bundle"
     },
     "deb": {
-      "name": "anicraft-0.1.0-linux-x86_64.deb",
-      "size": 16067302,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/anicraft/v0.1.0/anicraft-0.1.0-linux-x86_64.deb"
+      "name": "anicraft-0.2.1-linux-x86_64.deb",
+      "size": 20183444,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/anicraft/v0.2.1/anicraft-0.2.1-linux-x86_64.deb"
     },
-    "tag": "source/anicraft/v0.1.0",
-    "version": "v0.1.0"
+    "tag": "source/anicraft/v0.2.1",
+    "version": "v0.2.1"
+  },
+  {
+    "app": "cadcraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "cadcraft-ca87680.bundle",
+      "size": 50042753,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/cadcraft/v0.20.1/cadcraft-ca87680.bundle"
+    },
+    "deb": {
+      "name": "cadcraft-0.20.1-linux-x86_64.deb",
+      "size": 76474842,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/cadcraft/v0.20.1/cadcraft-0.20.1-linux-x86_64.deb"
+    },
+    "tag": "source/cadcraft/v0.20.1",
+    "version": "v0.20.1"
   },
   {
     "app": "craft-ai-integrations",
-    "archived_at": "2026-11-10T12:04:44Z",
+    "archived_at": "2026-11-11T09:58:21Z",
     "bundle": {
-      "name": "craft-ai-integrations-74ae174.bundle",
-      "size": 5603845,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-ai-integrations/74ae174/craft-ai-integrations-74ae174.bundle"
+      "name": "craft-ai-integrations-98e7768.bundle",
+      "size": 5504698,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-ai-integrations/98e7768/craft-ai-integrations-98e7768.bundle"
     },
     "deb": null,
-    "tag": "source/craft-ai-integrations/74ae174",
-    "version": "74ae174"
+    "tag": "source/craft-ai-integrations/98e7768",
+    "version": "98e7768"
+  },
+  {
+    "app": "craft-anything",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "craft-anything-28f0357.bundle",
+      "size": 26570171,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-anything/v0.6.1/craft-anything-28f0357.bundle"
+    },
+    "deb": {
+      "name": "craft-anything-0.6.1-linux-x86_64.deb",
+      "size": 71411420,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-anything/v0.6.1/craft-anything-0.6.1-linux-x86_64.deb"
+    },
+    "tag": "source/craft-anything/v0.6.1",
+    "version": "v0.6.1"
   },
   {
     "app": "craft-common-actions",
-    "archived_at": "2026-11-10T12:04:44Z",
+    "archived_at": "2026-11-11T09:58:21Z",
     "bundle": {
-      "name": "craft-common-actions-91e2c76.bundle",
-      "size": 1127534,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/91e2c76/craft-common-actions-91e2c76.bundle"
+      "name": "craft-common-actions-293de72.bundle",
+      "size": 1296870,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/293de72/craft-common-actions-293de72.bundle"
     },
     "deb": null,
-    "tag": "source/craft-common-actions/91e2c76",
-    "version": "91e2c76"
+    "tag": "source/craft-common-actions/293de72",
+    "version": "293de72"
+  },
+  {
+    "app": "craft-extensions",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "craft-extensions-964c715.bundle",
+      "size": 239205,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-extensions/964c715/craft-extensions-964c715.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-extensions/964c715",
+    "version": "964c715"
+  },
+  {
+    "app": "craft-fonts",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "craft-fonts-c1db6d1.bundle",
+      "size": 122077763,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-fonts/c1db6d1/craft-fonts-c1db6d1.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-fonts/c1db6d1",
+    "version": "c1db6d1"
+  },
+  {
+    "app": "craft-launcher",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "craft-launcher-66beafa.bundle",
+      "size": 30138006,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.19.2/craft-launcher-66beafa.bundle"
+    },
+    "deb": {
+      "name": "artcraft-launcher-0.19.2-linux-x86_64.deb",
+      "size": 14190708,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.19.2/artcraft-launcher-0.19.2-linux-x86_64.deb"
+    },
+    "tag": "source/craft-launcher/v0.19.2",
+    "version": "v0.19.2"
+  },
+  {
+    "app": "craft-libs",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "craft-libs-c6db9e8.bundle",
+      "size": 123289209,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/c6db9e8/craft-libs-c6db9e8.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-libs/c6db9e8",
+    "version": "c6db9e8"
+  },
+  {
+    "app": "craft-wiki",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "craft-wiki-be450c1.bundle",
+      "size": 52601723,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-wiki/be450c1/craft-wiki-be450c1.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-wiki/be450c1",
+    "version": "be450c1"
+  },
+  {
+    "app": "deckcraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "deckcraft-b8983ae.bundle",
+      "size": 55030056,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/deckcraft/v0.18.1/deckcraft-b8983ae.bundle"
+    },
+    "deb": {
+      "name": "deckcraft-0.18.1-linux-x86_64.deb",
+      "size": 106105064,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/deckcraft/v0.18.1/deckcraft-0.18.1-linux-x86_64.deb"
+    },
+    "tag": "source/deckcraft/v0.18.1",
+    "version": "v0.18.1"
+  },
+  {
+    "app": "designcraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "designcraft-6fff532.bundle",
+      "size": 82075608,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/designcraft/v0.20.1/designcraft-6fff532.bundle"
+    },
+    "deb": {
+      "name": "designcraft-0.20.1-linux-x86_64.deb",
+      "size": 126829130,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/designcraft/v0.20.1/designcraft-0.20.1-linux-x86_64.deb"
+    },
+    "tag": "source/designcraft/v0.20.1",
+    "version": "v0.20.1"
+  },
+  {
+    "app": "effectcraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "effectcraft-41585f2.bundle",
+      "size": 75862308,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/effectcraft/v0.24.1/effectcraft-41585f2.bundle"
+    },
+    "deb": {
+      "name": "effectcraft-0.24.1-linux-x86_64.deb",
+      "size": 83726180,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/effectcraft/v0.24.1/effectcraft-0.24.1-linux-x86_64.deb"
+    },
+    "tag": "source/effectcraft/v0.24.1",
+    "version": "v0.24.1"
+  },
+  {
+    "app": "egui",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "egui-faa2876.bundle",
+      "size": 84118086,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/egui/faa2876/egui-faa2876.bundle"
+    },
+    "deb": null,
+    "tag": "source/egui/faa2876",
+    "version": "faa2876"
+  },
+  {
+    "app": "figcraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "figcraft-0d6ce11.bundle",
+      "size": 151910585,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/figcraft/v0.18.1/figcraft-0d6ce11.bundle"
+    },
+    "deb": {
+      "name": "figcraft-0.18.1-linux-x86_64.deb",
+      "size": 103654584,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/figcraft/v0.18.1/figcraft-0.18.1-linux-x86_64.deb"
+    },
+    "tag": "source/figcraft/v0.18.1",
+    "version": "v0.18.1"
+  },
+  {
+    "app": "filmcraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "filmcraft-f7db6cd.bundle",
+      "size": 87632725,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/filmcraft/v0.20.1/filmcraft-f7db6cd.bundle"
+    },
+    "deb": {
+      "name": "filmcraft-0.20.1-linux-x86_64.deb",
+      "size": 113697526,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/filmcraft/v0.20.1/filmcraft-0.20.1-linux-x86_64.deb"
+    },
+    "tag": "source/filmcraft/v0.20.1",
+    "version": "v0.20.1"
+  },
+  {
+    "app": "gridcraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "gridcraft-37941f0.bundle",
+      "size": 88863323,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/gridcraft/v0.19.1/gridcraft-37941f0.bundle"
+    },
+    "deb": {
+      "name": "gridcraft-0.19.1-linux-x86_64.deb",
+      "size": 53695106,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/gridcraft/v0.19.1/gridcraft-0.19.1-linux-x86_64.deb"
+    },
+    "tag": "source/gridcraft/v0.19.1",
+    "version": "v0.19.1"
+  },
+  {
+    "app": "lightcraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "lightcraft-e4dd081.bundle",
+      "size": 225579116,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/lightcraft/v0.21.1/lightcraft-e4dd081.bundle"
+    },
+    "deb": {
+      "name": "lightcraft-0.21.1-linux-x86_64.deb",
+      "size": 124351728,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/lightcraft/v0.21.1/lightcraft-0.21.1-linux-x86_64.deb"
+    },
+    "tag": "source/lightcraft/v0.21.1",
+    "version": "v0.21.1"
+  },
+  {
+    "app": "materialcraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "materialcraft-b73facd.bundle",
+      "size": 38928668,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/materialcraft/v0.4.1/materialcraft-b73facd.bundle"
+    },
+    "deb": {
+      "name": "materialcraft-0.4.1-linux-x86_64.deb",
+      "size": 22575954,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/materialcraft/v0.4.1/materialcraft-0.4.1-linux-x86_64.deb"
+    },
+    "tag": "source/materialcraft/v0.4.1",
+    "version": "v0.4.1"
+  },
+  {
+    "app": "pdfcraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "pdfcraft-d749fd8.bundle",
+      "size": 358235112,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/pdfcraft/v0.21.1/pdfcraft-d749fd8.bundle"
+    },
+    "deb": {
+      "name": "pdfcraft-0.21.1-linux-x86_64.deb",
+      "size": 122486546,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/pdfcraft/v0.21.1/pdfcraft-0.21.1-linux-x86_64.deb"
+    },
+    "tag": "source/pdfcraft/v0.21.1",
+    "version": "v0.21.1"
+  },
+  {
+    "app": "photocraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "photocraft-7433015.bundle",
+      "size": 563904533,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/photocraft/v0.23.1/photocraft-7433015.bundle"
+    },
+    "deb": {
+      "name": "photocraft-0.23.1-linux-x86_64.deb",
+      "size": 141624678,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/photocraft/v0.23.1/photocraft-0.23.1-linux-x86_64.deb"
+    },
+    "tag": "source/photocraft/v0.23.1",
+    "version": "v0.23.1"
+  },
+  {
+    "app": "soundcraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "soundcraft-6a0949d.bundle",
+      "size": 123613734,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/soundcraft/v0.20.1/soundcraft-6a0949d.bundle"
+    },
+    "deb": {
+      "name": "soundcraft-0.20.1-linux-x86_64.deb",
+      "size": 22456886,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/soundcraft/v0.20.1/soundcraft-0.20.1-linux-x86_64.deb"
+    },
+    "tag": "source/soundcraft/v0.20.1",
+    "version": "v0.20.1"
+  },
+  {
+    "app": "texturecraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "texturecraft-42c8ea5.bundle",
+      "size": 21528938,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/texturecraft/v0.6.1/texturecraft-42c8ea5.bundle"
+    },
+    "deb": {
+      "name": "texturecraft-0.6.1-linux-x86_64.deb",
+      "size": 43793990,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/texturecraft/v0.6.1/texturecraft-0.6.1-linux-x86_64.deb"
+    },
+    "tag": "source/texturecraft/v0.6.1",
+    "version": "v0.6.1"
+  },
+  {
+    "app": "vectorcraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "vectorcraft-1467b71.bundle",
+      "size": 223129987,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/vectorcraft/v0.24.1/vectorcraft-1467b71.bundle"
+    },
+    "deb": {
+      "name": "vectorcraft-0.24.1-linux-x86_64.deb",
+      "size": 160193464,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/vectorcraft/v0.24.1/vectorcraft-0.24.1-linux-x86_64.deb"
+    },
+    "tag": "source/vectorcraft/v0.24.1",
+    "version": "v0.24.1"
+  },
+  {
+    "app": "winit",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "winit-7f66c99.bundle",
+      "size": 14845199,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/winit/7f66c99/winit-7f66c99.bundle"
+    },
+    "deb": null,
+    "tag": "source/winit/7f66c99",
+    "version": "7f66c99"
+  },
+  {
+    "app": "winprint.rs",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "winprint.rs-e90c444.bundle",
+      "size": 16974317,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/winprint.rs/e90c444/winprint.rs-e90c444.bundle"
+    },
+    "deb": null,
+    "tag": "source/winprint.rs/e90c444",
+    "version": "e90c444"
+  },
+  {
+    "app": "wordcraft",
+    "archived_at": "2026-11-11T09:58:21Z",
+    "bundle": {
+      "name": "wordcraft-07f9773.bundle",
+      "size": 184841400,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/wordcraft/v0.18.1/wordcraft-07f9773.bundle"
+    },
+    "deb": {
+      "name": "wordcraft-0.18.1-linux-x86_64.deb",
+      "size": 120018580,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/wordcraft/v0.18.1/wordcraft-0.18.1-linux-x86_64.deb"
+    },
+    "tag": "source/wordcraft/v0.18.1",
+    "version": "v0.18.1"
   },
   {
     "app": "craft-contrib",
@@ -52,70 +408,6 @@
     "version": "666a6dc"
   },
   {
-    "app": "craft-extensions",
-    "archived_at": "2026-11-10T12:04:44Z",
-    "bundle": {
-      "name": "craft-extensions-bc36914.bundle",
-      "size": 216533,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-extensions/bc36914/craft-extensions-bc36914.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-extensions/bc36914",
-    "version": "bc36914"
-  },
-  {
-    "app": "craft-launcher",
-    "archived_at": "2026-11-10T12:04:44Z",
-    "bundle": {
-      "name": "craft-launcher-c636281.bundle",
-      "size": 29344541,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.19.0/craft-launcher-c636281.bundle"
-    },
-    "deb": {
-      "name": "artcraft-launcher-0.19.0-linux-x86_64.deb",
-      "size": 13952944,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.19.0/artcraft-launcher-0.19.0-linux-x86_64.deb"
-    },
-    "tag": "source/craft-launcher/v0.19.0",
-    "version": "v0.19.0"
-  },
-  {
-    "app": "craft-libs",
-    "archived_at": "2026-11-10T12:04:44Z",
-    "bundle": {
-      "name": "craft-libs-60ede99.bundle",
-      "size": 110536177,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/60ede99/craft-libs-60ede99.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-libs/60ede99",
-    "version": "60ede99"
-  },
-  {
-    "app": "craft-wiki",
-    "archived_at": "2026-11-10T12:04:44Z",
-    "bundle": {
-      "name": "craft-wiki-6f5d96f.bundle",
-      "size": 35271633,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-wiki/6f5d96f/craft-wiki-6f5d96f.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-wiki/6f5d96f",
-    "version": "6f5d96f"
-  },
-  {
-    "app": "winprint.rs",
-    "archived_at": "2026-11-10T12:04:44Z",
-    "bundle": {
-      "name": "winprint.rs-bc06a7c.bundle",
-      "size": 16983483,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/winprint.rs/bc06a7c/winprint.rs-bc06a7c.bundle"
-    },
-    "deb": null,
-    "tag": "source/winprint.rs/bc06a7c",
-    "version": "bc06a7c"
-  },
-  {
     "app": "anicraft",
     "archived_at": "2026-11-10T05:58:17Z",
     "bundle": {
@@ -126,22 +418,6 @@
     "deb": null,
     "tag": "source/anicraft/cae2150",
     "version": "cae2150"
-  },
-  {
-    "app": "effectcraft",
-    "archived_at": "2026-11-09T22:04:36Z",
-    "bundle": {
-      "name": "effectcraft-6a105aa.bundle",
-      "size": 75026898,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/effectcraft/v0.23.1/effectcraft-6a105aa.bundle"
-    },
-    "deb": {
-      "name": "effectcraft-0.23.1-linux-x86_64.deb",
-      "size": 83263308,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/effectcraft/v0.23.1/effectcraft-0.23.1-linux-x86_64.deb"
-    },
-    "tag": "source/effectcraft/v0.23.1",
-    "version": "v0.23.1"
   },
   {
     "app": "artcraft-services",
@@ -156,18 +432,6 @@
     "version": "0a2dc72"
   },
   {
-    "app": "egui",
-    "archived_at": "2026-11-09T21:23:11Z",
-    "bundle": {
-      "name": "egui-bf5ac0d.bundle",
-      "size": 84093597,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/egui/bf5ac0d/egui-bf5ac0d.bundle"
-    },
-    "deb": null,
-    "tag": "source/egui/bf5ac0d",
-    "version": "bf5ac0d"
-  },
-  {
     "app": "indd-utils",
     "archived_at": "2026-11-09T21:23:11Z",
     "bundle": {
@@ -178,18 +442,6 @@
     "deb": null,
     "tag": "source/indd-utils/136f973",
     "version": "136f973"
-  },
-  {
-    "app": "winit",
-    "archived_at": "2026-11-09T21:23:11Z",
-    "bundle": {
-      "name": "winit-f0a8348.bundle",
-      "size": 14802494,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/winit/f0a8348/winit-f0a8348.bundle"
-    },
-    "deb": null,
-    "tag": "source/winit/f0a8348",
-    "version": "f0a8348"
   },
   {
     "app": "craft-pr-review-tool",
@@ -228,18 +480,6 @@
     "version": "2a55dce"
   },
   {
-    "app": "craft-fonts",
-    "archived_at": "2026-11-09T20:59:41Z",
-    "bundle": {
-      "name": "craft-fonts-aced413.bundle",
-      "size": 122514402,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-fonts/aced413/craft-fonts-aced413.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-fonts/aced413",
-    "version": "aced413"
-  },
-  {
     "app": "craft-launcher-assets",
     "archived_at": "2026-11-09T20:59:41Z",
     "bundle": {
@@ -252,38 +492,6 @@
     "version": "8619bde"
   },
   {
-    "app": "cadcraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "cadcraft-a3d9348.bundle",
-      "size": 49795239,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/cadcraft/v0.19.0/cadcraft-a3d9348.bundle"
-    },
-    "deb": {
-      "name": "cadcraft-0.19.0-linux-x86_64.deb",
-      "size": 76490448,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/cadcraft/v0.19.0/cadcraft-0.19.0-linux-x86_64.deb"
-    },
-    "tag": "source/cadcraft/v0.19.0",
-    "version": "v0.19.0"
-  },
-  {
-    "app": "craft-anything",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "craft-anything-10ac170.bundle",
-      "size": 21066942,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-anything/v0.6.0/craft-anything-10ac170.bundle"
-    },
-    "deb": {
-      "name": "craft-anything-0.6.0-linux-x86_64.deb",
-      "size": 70463518,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-anything/v0.6.0/craft-anything-0.6.0-linux-x86_64.deb"
-    },
-    "tag": "source/craft-anything/v0.6.0",
-    "version": "v0.6.0"
-  },
-  {
     "app": "craft-i18n",
     "archived_at": "2026-11-09T20:56:11Z",
     "bundle": {
@@ -294,213 +502,5 @@
     "deb": null,
     "tag": "source/craft-i18n/language-packs-2",
     "version": "language-packs-2"
-  },
-  {
-    "app": "deckcraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "deckcraft-0623b43.bundle",
-      "size": 51240732,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/deckcraft/v0.17.0/deckcraft-0623b43.bundle"
-    },
-    "deb": {
-      "name": "deckcraft-0.17.0-linux-x86_64.deb",
-      "size": 106099694,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/deckcraft/v0.17.0/deckcraft-0.17.0-linux-x86_64.deb"
-    },
-    "tag": "source/deckcraft/v0.17.0",
-    "version": "v0.17.0"
-  },
-  {
-    "app": "designcraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "designcraft-32a1dbc.bundle",
-      "size": 77746832,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/designcraft/v0.19.0/designcraft-32a1dbc.bundle"
-    },
-    "deb": {
-      "name": "designcraft-0.19.0-linux-x86_64.deb",
-      "size": 126602286,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/designcraft/v0.19.0/designcraft-0.19.0-linux-x86_64.deb"
-    },
-    "tag": "source/designcraft/v0.19.0",
-    "version": "v0.19.0"
-  },
-  {
-    "app": "figcraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "figcraft-a2e8743.bundle",
-      "size": 153804828,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/figcraft/v0.17.0/figcraft-a2e8743.bundle"
-    },
-    "deb": {
-      "name": "figcraft-0.17.0-linux-x86_64.deb",
-      "size": 103700000,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/figcraft/v0.17.0/figcraft-0.17.0-linux-x86_64.deb"
-    },
-    "tag": "source/figcraft/v0.17.0",
-    "version": "v0.17.0"
-  },
-  {
-    "app": "filmcraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "filmcraft-f4090d7.bundle",
-      "size": 85843786,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/filmcraft/v0.19.0/filmcraft-f4090d7.bundle"
-    },
-    "deb": {
-      "name": "filmcraft-0.19.0-linux-x86_64.deb",
-      "size": 110203578,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/filmcraft/v0.19.0/filmcraft-0.19.0-linux-x86_64.deb"
-    },
-    "tag": "source/filmcraft/v0.19.0",
-    "version": "v0.19.0"
-  },
-  {
-    "app": "gridcraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "gridcraft-e9addf5.bundle",
-      "size": 84610385,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/gridcraft/v0.18.0/gridcraft-e9addf5.bundle"
-    },
-    "deb": {
-      "name": "gridcraft-0.18.0-linux-x86_64.deb",
-      "size": 53201654,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/gridcraft/v0.18.0/gridcraft-0.18.0-linux-x86_64.deb"
-    },
-    "tag": "source/gridcraft/v0.18.0",
-    "version": "v0.18.0"
-  },
-  {
-    "app": "lightcraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "lightcraft-f6b57b0.bundle",
-      "size": 218757469,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/lightcraft/v0.20.0/lightcraft-f6b57b0.bundle"
-    },
-    "deb": {
-      "name": "lightcraft-0.20.0-linux-x86_64.deb",
-      "size": 124023402,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/lightcraft/v0.20.0/lightcraft-0.20.0-linux-x86_64.deb"
-    },
-    "tag": "source/lightcraft/v0.20.0",
-    "version": "v0.20.0"
-  },
-  {
-    "app": "materialcraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "materialcraft-29857f6.bundle",
-      "size": 31672271,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/materialcraft/v0.3.0/materialcraft-29857f6.bundle"
-    },
-    "deb": {
-      "name": "materialcraft-0.3.0-linux-x86_64.deb",
-      "size": 21608186,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/materialcraft/v0.3.0/materialcraft-0.3.0-linux-x86_64.deb"
-    },
-    "tag": "source/materialcraft/v0.3.0",
-    "version": "v0.3.0"
-  },
-  {
-    "app": "pdfcraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "pdfcraft-a1ea2d3.bundle",
-      "size": 340456081,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/pdfcraft/v0.20.0/pdfcraft-a1ea2d3.bundle"
-    },
-    "deb": {
-      "name": "pdfcraft-0.20.0-linux-x86_64.deb",
-      "size": 120459898,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/pdfcraft/v0.20.0/pdfcraft-0.20.0-linux-x86_64.deb"
-    },
-    "tag": "source/pdfcraft/v0.20.0",
-    "version": "v0.20.0"
-  },
-  {
-    "app": "photocraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "photocraft-318a6d1.bundle",
-      "size": 547181145,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/photocraft/v0.22.0/photocraft-318a6d1.bundle"
-    },
-    "deb": {
-      "name": "photocraft-0.22.0-linux-x86_64.deb",
-      "size": 139237666,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/photocraft/v0.22.0/photocraft-0.22.0-linux-x86_64.deb"
-    },
-    "tag": "source/photocraft/v0.22.0",
-    "version": "v0.22.0"
-  },
-  {
-    "app": "soundcraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "soundcraft-ef58a90.bundle",
-      "size": 123164497,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/soundcraft/v0.19.0/soundcraft-ef58a90.bundle"
-    },
-    "deb": {
-      "name": "soundcraft-0.19.0-linux-x86_64.deb",
-      "size": 21594914,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/soundcraft/v0.19.0/soundcraft-0.19.0-linux-x86_64.deb"
-    },
-    "tag": "source/soundcraft/v0.19.0",
-    "version": "v0.19.0"
-  },
-  {
-    "app": "texturecraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "texturecraft-f5e41e7.bundle",
-      "size": 21076004,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/texturecraft/v0.5.0/texturecraft-f5e41e7.bundle"
-    },
-    "deb": {
-      "name": "texturecraft-0.5.0-linux-x86_64.deb",
-      "size": 43209556,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/texturecraft/v0.5.0/texturecraft-0.5.0-linux-x86_64.deb"
-    },
-    "tag": "source/texturecraft/v0.5.0",
-    "version": "v0.5.0"
-  },
-  {
-    "app": "vectorcraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "vectorcraft-a90d7bc.bundle",
-      "size": 189079365,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/vectorcraft/v0.23.0/vectorcraft-a90d7bc.bundle"
-    },
-    "deb": {
-      "name": "vectorcraft-0.23.0-linux-x86_64.deb",
-      "size": 156260900,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/vectorcraft/v0.23.0/vectorcraft-0.23.0-linux-x86_64.deb"
-    },
-    "tag": "source/vectorcraft/v0.23.0",
-    "version": "v0.23.0"
-  },
-  {
-    "app": "wordcraft",
-    "archived_at": "2026-11-09T20:56:11Z",
-    "bundle": {
-      "name": "wordcraft-d40d1b2.bundle",
-      "size": 180075694,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/wordcraft/v0.17.0/wordcraft-d40d1b2.bundle"
-    },
-    "deb": {
-      "name": "wordcraft-0.17.0-linux-x86_64.deb",
-      "size": 119804940,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/wordcraft/v0.17.0/wordcraft-0.17.0-linux-x86_64.deb"
-    },
-    "tag": "source/wordcraft/v0.17.0",
-    "version": "v0.17.0"
   }
 ]
