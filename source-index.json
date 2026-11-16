@@ -1,5 +1,89 @@
 [
   {
+    "app": "craft-ai-integrations",
+    "archived_at": "2026-11-15T10:02:30Z",
+    "bundle": {
+      "name": "craft-ai-integrations-d94a359.bundle",
+      "size": 6353549,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-ai-integrations/d94a359/craft-ai-integrations-d94a359.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-ai-integrations/d94a359",
+    "version": "d94a359"
+  },
+  {
+    "app": "craft-common-actions",
+    "archived_at": "2026-11-15T10:02:30Z",
+    "bundle": {
+      "name": "craft-common-actions-59d1ecc.bundle",
+      "size": 1528323,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/59d1ecc/craft-common-actions-59d1ecc.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-common-actions/59d1ecc",
+    "version": "59d1ecc"
+  },
+  {
+    "app": "craft-contrib",
+    "archived_at": "2026-11-15T10:02:30Z",
+    "bundle": {
+      "name": "craft-contrib-f750223.bundle",
+      "size": 436943,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-contrib/f750223/craft-contrib-f750223.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-contrib/f750223",
+    "version": "f750223"
+  },
+  {
+    "app": "craft-fonts",
+    "archived_at": "2026-11-15T10:02:30Z",
+    "bundle": {
+      "name": "craft-fonts-cc9269c.bundle",
+      "size": 122168803,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-fonts/cc9269c/craft-fonts-cc9269c.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-fonts/cc9269c",
+    "version": "cc9269c"
+  },
+  {
+    "app": "craft-libs",
+    "archived_at": "2026-11-15T10:02:30Z",
+    "bundle": {
+      "name": "craft-libs-57288ed.bundle",
+      "size": 155780324,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/57288ed/craft-libs-57288ed.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-libs/57288ed",
+    "version": "57288ed"
+  },
+  {
+    "app": "craft-repo-status-app",
+    "archived_at": "2026-11-15T10:02:30Z",
+    "bundle": {
+      "name": "craft-repo-status-app-b35f491.bundle",
+      "size": 2905016,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-repo-status-app/b35f491/craft-repo-status-app-b35f491.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-repo-status-app/b35f491",
+    "version": "b35f491"
+  },
+  {
+    "app": "craft-wiki",
+    "archived_at": "2026-11-15T10:02:30Z",
+    "bundle": {
+      "name": "craft-wiki-6346822.bundle",
+      "size": 78680303,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-wiki/6346822/craft-wiki-6346822.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-wiki/6346822",
+    "version": "6346822"
+  },
+  {
     "app": "autocraft",
     "archived_at": "2026-11-14T09:36:24Z",
     "bundle": {
@@ -12,54 +96,6 @@
     "version": "303a000"
   },
   {
-    "app": "craft-ai-integrations",
-    "archived_at": "2026-11-14T09:36:24Z",
-    "bundle": {
-      "name": "craft-ai-integrations-db30646.bundle",
-      "size": 6195426,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-ai-integrations/db30646/craft-ai-integrations-db30646.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-ai-integrations/db30646",
-    "version": "db30646"
-  },
-  {
-    "app": "craft-common-actions",
-    "archived_at": "2026-11-14T09:36:24Z",
-    "bundle": {
-      "name": "craft-common-actions-c8f4b6e.bundle",
-      "size": 1429688,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/c8f4b6e/craft-common-actions-c8f4b6e.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-common-actions/c8f4b6e",
-    "version": "c8f4b6e"
-  },
-  {
-    "app": "craft-libs",
-    "archived_at": "2026-11-14T09:36:24Z",
-    "bundle": {
-      "name": "craft-libs-0c144b7.bundle",
-      "size": 144473256,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/0c144b7/craft-libs-0c144b7.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-libs/0c144b7",
-    "version": "0c144b7"
-  },
-  {
-    "app": "craft-wiki",
-    "archived_at": "2026-11-14T09:36:24Z",
-    "bundle": {
-      "name": "craft-wiki-e91cb6c.bundle",
-      "size": 75790877,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-wiki/e91cb6c/craft-wiki-e91cb6c.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-wiki/e91cb6c",
-    "version": "e91cb6c"
-  },
-  {
     "app": "winprint.rs",
     "archived_at": "2026-11-14T09:36:24Z",
     "bundle": {
@@ -70,18 +106,6 @@
     "deb": null,
     "tag": "source/winprint.rs/8ae097e",
     "version": "8ae097e"
-  },
-  {
-    "app": "craft-contrib",
-    "archived_at": "2026-11-12T10:28:56Z",
-    "bundle": {
-      "name": "craft-contrib-ce8827d.bundle",
-      "size": 270418,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-contrib/ce8827d/craft-contrib-ce8827d.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-contrib/ce8827d",
-    "version": "ce8827d"
   },
   {
     "app": "anicraft",
@@ -142,18 +166,6 @@
     "deb": null,
     "tag": "source/craft-extensions/964c715",
     "version": "964c715"
-  },
-  {
-    "app": "craft-fonts",
-    "archived_at": "2026-11-11T09:58:21Z",
-    "bundle": {
-      "name": "craft-fonts-c1db6d1.bundle",
-      "size": 122077763,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-fonts/c1db6d1/craft-fonts-c1db6d1.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-fonts/c1db6d1",
-    "version": "c1db6d1"
   },
   {
     "app": "craft-launcher",
@@ -466,18 +478,6 @@
     "deb": null,
     "tag": "source/craft-pr-review-tool/197a26d",
     "version": "197a26d"
-  },
-  {
-    "app": "craft-repo-status-app",
-    "archived_at": "2026-11-09T21:12:58Z",
-    "bundle": {
-      "name": "craft-repo-status-app-b4a2f85.bundle",
-      "size": 2849846,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-repo-status-app/b4a2f85/craft-repo-status-app-b4a2f85.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-repo-status-app/b4a2f85",
-    "version": "b4a2f85"
   },
   {
     "app": "craft-skills",
