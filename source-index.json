@@ -1,39 +1,63 @@
 [
   {
     "app": "autocraft",
-    "archived_at": "2026-11-16T12:25:23Z",
+    "archived_at": "2026-11-17T11:18:19Z",
     "bundle": {
-      "name": "autocraft-bbae2cf.bundle",
-      "size": 9616642,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/autocraft/bbae2cf/autocraft-bbae2cf.bundle"
+      "name": "autocraft-d8e45b5.bundle",
+      "size": 9859221,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/autocraft/d8e45b5/autocraft-d8e45b5.bundle"
     },
     "deb": null,
-    "tag": "source/autocraft/bbae2cf",
-    "version": "bbae2cf"
+    "tag": "source/autocraft/d8e45b5",
+    "version": "d8e45b5"
+  },
+  {
+    "app": "craft-common-actions",
+    "archived_at": "2026-11-17T11:18:19Z",
+    "bundle": {
+      "name": "craft-common-actions-cbcc13c.bundle",
+      "size": 1630503,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/cbcc13c/craft-common-actions-cbcc13c.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-common-actions/cbcc13c",
+    "version": "cbcc13c"
   },
   {
     "app": "craft-contrib",
-    "archived_at": "2026-11-16T12:25:23Z",
+    "archived_at": "2026-11-17T11:18:19Z",
     "bundle": {
-      "name": "craft-contrib-279b2c0.bundle",
-      "size": 500838,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-contrib/279b2c0/craft-contrib-279b2c0.bundle"
+      "name": "craft-contrib-5e6b1b9.bundle",
+      "size": 558709,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-contrib/5e6b1b9/craft-contrib-5e6b1b9.bundle"
     },
     "deb": null,
-    "tag": "source/craft-contrib/279b2c0",
-    "version": "279b2c0"
+    "tag": "source/craft-contrib/5e6b1b9",
+    "version": "5e6b1b9"
   },
   {
     "app": "craft-libs",
-    "archived_at": "2026-11-16T12:25:23Z",
+    "archived_at": "2026-11-17T11:18:19Z",
     "bundle": {
-      "name": "craft-libs-83cb113.bundle",
-      "size": 159550519,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/83cb113/craft-libs-83cb113.bundle"
+      "name": "craft-libs-01ffc9f.bundle",
+      "size": 167015187,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/01ffc9f/craft-libs-01ffc9f.bundle"
     },
     "deb": null,
-    "tag": "source/craft-libs/83cb113",
-    "version": "83cb113"
+    "tag": "source/craft-libs/01ffc9f",
+    "version": "01ffc9f"
+  },
+  {
+    "app": "winprint.rs",
+    "archived_at": "2026-11-17T11:18:19Z",
+    "bundle": {
+      "name": "winprint.rs-f084d35.bundle",
+      "size": 17012704,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/winprint.rs/f084d35/winprint.rs-f084d35.bundle"
+    },
+    "deb": null,
+    "tag": "source/winprint.rs/f084d35",
+    "version": "f084d35"
   },
   {
     "app": "artcraft-services",
@@ -58,18 +82,6 @@
     "deb": null,
     "tag": "source/craft-ai-integrations/d94a359",
     "version": "d94a359"
-  },
-  {
-    "app": "craft-common-actions",
-    "archived_at": "2026-11-15T10:02:30Z",
-    "bundle": {
-      "name": "craft-common-actions-59d1ecc.bundle",
-      "size": 1528323,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/59d1ecc/craft-common-actions-59d1ecc.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-common-actions/59d1ecc",
-    "version": "59d1ecc"
   },
   {
     "app": "craft-fonts",
@@ -106,18 +118,6 @@
     "deb": null,
     "tag": "source/craft-wiki/6346822",
     "version": "6346822"
-  },
-  {
-    "app": "winprint.rs",
-    "archived_at": "2026-11-14T09:36:24Z",
-    "bundle": {
-      "name": "winprint.rs-8ae097e.bundle",
-      "size": 16982666,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/winprint.rs/8ae097e/winprint.rs-8ae097e.bundle"
-    },
-    "deb": null,
-    "tag": "source/winprint.rs/8ae097e",
-    "version": "8ae097e"
   },
   {
     "app": "anicraft",
