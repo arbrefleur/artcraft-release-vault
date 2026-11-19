@@ -1,5 +1,41 @@
 [
   {
+    "app": "craft-common-actions",
+    "archived_at": "2026-11-18T10:51:38Z",
+    "bundle": {
+      "name": "craft-common-actions-2c06746.bundle",
+      "size": 1694414,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/2c06746/craft-common-actions-2c06746.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-common-actions/2c06746",
+    "version": "2c06746"
+  },
+  {
+    "app": "craft-contrib",
+    "archived_at": "2026-11-18T10:51:38Z",
+    "bundle": {
+      "name": "craft-contrib-f845d66.bundle",
+      "size": 632070,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-contrib/f845d66/craft-contrib-f845d66.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-contrib/f845d66",
+    "version": "f845d66"
+  },
+  {
+    "app": "craft-libs",
+    "archived_at": "2026-11-18T10:51:38Z",
+    "bundle": {
+      "name": "craft-libs-1acd07f.bundle",
+      "size": 166370527,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/1acd07f/craft-libs-1acd07f.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-libs/1acd07f",
+    "version": "1acd07f"
+  },
+  {
     "app": "autocraft",
     "archived_at": "2026-11-17T11:18:19Z",
     "bundle": {
@@ -10,42 +46,6 @@
     "deb": null,
     "tag": "source/autocraft/d8e45b5",
     "version": "d8e45b5"
-  },
-  {
-    "app": "craft-common-actions",
-    "archived_at": "2026-11-17T11:18:19Z",
-    "bundle": {
-      "name": "craft-common-actions-cbcc13c.bundle",
-      "size": 1630503,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/cbcc13c/craft-common-actions-cbcc13c.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-common-actions/cbcc13c",
-    "version": "cbcc13c"
-  },
-  {
-    "app": "craft-contrib",
-    "archived_at": "2026-11-17T11:18:19Z",
-    "bundle": {
-      "name": "craft-contrib-5e6b1b9.bundle",
-      "size": 558709,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-contrib/5e6b1b9/craft-contrib-5e6b1b9.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-contrib/5e6b1b9",
-    "version": "5e6b1b9"
-  },
-  {
-    "app": "craft-libs",
-    "archived_at": "2026-11-17T11:18:19Z",
-    "bundle": {
-      "name": "craft-libs-01ffc9f.bundle",
-      "size": 167015187,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/01ffc9f/craft-libs-01ffc9f.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-libs/01ffc9f",
-    "version": "01ffc9f"
   },
   {
     "app": "winprint.rs",
