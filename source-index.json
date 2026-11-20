@@ -1,51 +1,63 @@
 [
   {
-    "app": "craft-common-actions",
-    "archived_at": "2026-11-18T10:51:38Z",
+    "app": "autocraft",
+    "archived_at": "2026-11-19T10:51:05Z",
     "bundle": {
-      "name": "craft-common-actions-2c06746.bundle",
-      "size": 1694414,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/2c06746/craft-common-actions-2c06746.bundle"
+      "name": "autocraft-301d679.bundle",
+      "size": 12091002,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/autocraft/301d679/autocraft-301d679.bundle"
     },
     "deb": null,
-    "tag": "source/craft-common-actions/2c06746",
-    "version": "2c06746"
+    "tag": "source/autocraft/301d679",
+    "version": "301d679"
+  },
+  {
+    "app": "craft-common-actions",
+    "archived_at": "2026-11-19T10:51:05Z",
+    "bundle": {
+      "name": "craft-common-actions-f514145.bundle",
+      "size": 1807095,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/f514145/craft-common-actions-f514145.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-common-actions/f514145",
+    "version": "f514145"
   },
   {
     "app": "craft-contrib",
-    "archived_at": "2026-11-18T10:51:38Z",
+    "archived_at": "2026-11-19T10:51:05Z",
     "bundle": {
-      "name": "craft-contrib-f845d66.bundle",
-      "size": 632070,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-contrib/f845d66/craft-contrib-f845d66.bundle"
+      "name": "craft-contrib-5b1a2b1.bundle",
+      "size": 673688,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-contrib/5b1a2b1/craft-contrib-5b1a2b1.bundle"
     },
     "deb": null,
-    "tag": "source/craft-contrib/f845d66",
-    "version": "f845d66"
+    "tag": "source/craft-contrib/5b1a2b1",
+    "version": "5b1a2b1"
   },
   {
     "app": "craft-libs",
-    "archived_at": "2026-11-18T10:51:38Z",
+    "archived_at": "2026-11-19T10:51:05Z",
     "bundle": {
-      "name": "craft-libs-1acd07f.bundle",
-      "size": 166370527,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/1acd07f/craft-libs-1acd07f.bundle"
+      "name": "craft-libs-e6dbc97.bundle",
+      "size": 179183137,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/e6dbc97/craft-libs-e6dbc97.bundle"
     },
     "deb": null,
-    "tag": "source/craft-libs/1acd07f",
-    "version": "1acd07f"
+    "tag": "source/craft-libs/e6dbc97",
+    "version": "e6dbc97"
   },
   {
-    "app": "autocraft",
-    "archived_at": "2026-11-17T11:18:19Z",
+    "app": "craft-wiki",
+    "archived_at": "2026-11-19T10:51:05Z",
     "bundle": {
-      "name": "autocraft-d8e45b5.bundle",
-      "size": 9859221,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/autocraft/d8e45b5/autocraft-d8e45b5.bundle"
+      "name": "craft-wiki-fe4f11f.bundle",
+      "size": 79090040,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-wiki/fe4f11f/craft-wiki-fe4f11f.bundle"
     },
     "deb": null,
-    "tag": "source/autocraft/d8e45b5",
-    "version": "d8e45b5"
+    "tag": "source/craft-wiki/fe4f11f",
+    "version": "fe4f11f"
   },
   {
     "app": "winprint.rs",
@@ -106,18 +118,6 @@
     "deb": null,
     "tag": "source/craft-repo-status-app/b35f491",
     "version": "b35f491"
-  },
-  {
-    "app": "craft-wiki",
-    "archived_at": "2026-11-15T10:02:30Z",
-    "bundle": {
-      "name": "craft-wiki-6346822.bundle",
-      "size": 78680303,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-wiki/6346822/craft-wiki-6346822.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-wiki/6346822",
-    "version": "6346822"
   },
   {
     "app": "anicraft",
