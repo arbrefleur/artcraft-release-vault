@@ -1,15 +1,63 @@
 [
   {
     "app": "autocraft",
-    "archived_at": "2026-11-20T10:41:28Z",
+    "archived_at": "2026-11-21T10:23:29Z",
     "bundle": {
-      "name": "autocraft-739d3b8.bundle",
-      "size": 10993961,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/autocraft/739d3b8/autocraft-739d3b8.bundle"
+      "name": "autocraft-01018ac.bundle",
+      "size": 15388803,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/autocraft/01018ac/autocraft-01018ac.bundle"
     },
     "deb": null,
-    "tag": "source/autocraft/739d3b8",
-    "version": "739d3b8"
+    "tag": "source/autocraft/01018ac",
+    "version": "01018ac"
+  },
+  {
+    "app": "craft-arc-runner",
+    "archived_at": "2026-11-21T10:23:29Z",
+    "bundle": {
+      "name": "craft-arc-runner-0c60ab1.bundle",
+      "size": 23892,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-arc-runner/0c60ab1/craft-arc-runner-0c60ab1.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-arc-runner/0c60ab1",
+    "version": "0c60ab1"
+  },
+  {
+    "app": "craft-common-actions",
+    "archived_at": "2026-11-21T10:23:29Z",
+    "bundle": {
+      "name": "craft-common-actions-ced652c.bundle",
+      "size": 2069248,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/ced652c/craft-common-actions-ced652c.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-common-actions/ced652c",
+    "version": "ced652c"
+  },
+  {
+    "app": "craft-libs",
+    "archived_at": "2026-11-21T10:23:29Z",
+    "bundle": {
+      "name": "craft-libs-59c9ebf.bundle",
+      "size": 188031694,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/59c9ebf/craft-libs-59c9ebf.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-libs/59c9ebf",
+    "version": "59c9ebf"
+  },
+  {
+    "app": "winprint.rs",
+    "archived_at": "2026-11-21T10:23:29Z",
+    "bundle": {
+      "name": "winprint.rs-8b734a8.bundle",
+      "size": 16996642,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/winprint.rs/8b734a8/winprint.rs-8b734a8.bundle"
+    },
+    "deb": null,
+    "tag": "source/winprint.rs/8b734a8",
+    "version": "8b734a8"
   },
   {
     "app": "craft-ai-integrations",
@@ -22,18 +70,6 @@
     "deb": null,
     "tag": "source/craft-ai-integrations/a822ad5",
     "version": "a822ad5"
-  },
-  {
-    "app": "craft-common-actions",
-    "archived_at": "2026-11-20T10:41:28Z",
-    "bundle": {
-      "name": "craft-common-actions-0bef64f.bundle",
-      "size": 1820371,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/0bef64f/craft-common-actions-0bef64f.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-common-actions/0bef64f",
-    "version": "0bef64f"
   },
   {
     "app": "craft-extensions",
@@ -58,18 +94,6 @@
     "deb": null,
     "tag": "source/craft-fonts/26a7923",
     "version": "26a7923"
-  },
-  {
-    "app": "craft-libs",
-    "archived_at": "2026-11-20T10:41:28Z",
-    "bundle": {
-      "name": "craft-libs-531f12d.bundle",
-      "size": 179726421,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/531f12d/craft-libs-531f12d.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-libs/531f12d",
-    "version": "531f12d"
   },
   {
     "app": "craft-skills",
@@ -118,18 +142,6 @@
     "deb": null,
     "tag": "source/craft-wiki/fe4f11f",
     "version": "fe4f11f"
-  },
-  {
-    "app": "winprint.rs",
-    "archived_at": "2026-11-17T11:18:19Z",
-    "bundle": {
-      "name": "winprint.rs-f084d35.bundle",
-      "size": 17012704,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/winprint.rs/f084d35/winprint.rs-f084d35.bundle"
-    },
-    "deb": null,
-    "tag": "source/winprint.rs/f084d35",
-    "version": "f084d35"
   },
   {
     "app": "artcraft-services",
