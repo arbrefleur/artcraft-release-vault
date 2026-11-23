@@ -1,5 +1,15 @@
 [
   {
+    "archived_at": "2026-11-23T11:27:39Z",
+    "bundle": {
+      "name": "artcraft-services-fa0b369.bundle",
+      "size": 1357102917,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/artcraft-services/fa0b369/artcraft-services-fa0b369.bundle"
+    },
+    "head": "fa0b369",
+    "tag": "source/artcraft-services/fa0b369"
+  },
+  {
     "archived_at": "2026-11-16T10:17:28Z",
     "bundle": {
       "name": "artcraft-services-4c72ed5.bundle",
