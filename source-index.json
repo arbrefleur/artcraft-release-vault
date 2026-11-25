@@ -1,27 +1,103 @@
 [
   {
     "app": "autocraft",
-    "archived_at": "2026-11-23T14:00:26Z",
+    "archived_at": "2026-11-24T13:01:59Z",
     "bundle": {
-      "name": "autocraft-9e23575.bundle",
-      "size": 16958660,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/autocraft/9e23575/autocraft-9e23575.bundle"
+      "name": "autocraft-ac77770.bundle",
+      "size": 18545592,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/autocraft/ac77770/autocraft-ac77770.bundle"
     },
     "deb": null,
-    "tag": "source/autocraft/9e23575",
-    "version": "9e23575"
+    "tag": "source/autocraft/ac77770",
+    "version": "ac77770"
   },
   {
     "app": "craft-common-actions",
-    "archived_at": "2026-11-23T14:00:26Z",
+    "archived_at": "2026-11-24T13:01:59Z",
     "bundle": {
-      "name": "craft-common-actions-82f9950.bundle",
-      "size": 3182926,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/82f9950/craft-common-actions-82f9950.bundle"
+      "name": "craft-common-actions-1754016.bundle",
+      "size": 3504419,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/1754016/craft-common-actions-1754016.bundle"
     },
     "deb": null,
-    "tag": "source/craft-common-actions/82f9950",
-    "version": "82f9950"
+    "tag": "source/craft-common-actions/1754016",
+    "version": "1754016"
+  },
+  {
+    "app": "craft-launcher-assets",
+    "archived_at": "2026-11-24T13:01:59Z",
+    "bundle": {
+      "name": "craft-launcher-assets-7ef19ac.bundle",
+      "size": 3517362,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher-assets/7ef19ac/craft-launcher-assets-7ef19ac.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-launcher-assets/7ef19ac",
+    "version": "7ef19ac"
+  },
+  {
+    "app": "craft-launcher",
+    "archived_at": "2026-11-24T13:01:59Z",
+    "bundle": {
+      "name": "craft-launcher-bc76554.bundle",
+      "size": 34474342,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.20.1/craft-launcher-bc76554.bundle"
+    },
+    "deb": {
+      "name": "artcraft-launcher-0.20.1-linux-x86_64.deb",
+      "size": 18647038,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.20.1/artcraft-launcher-0.20.1-linux-x86_64.deb"
+    },
+    "tag": "source/craft-launcher/v0.20.1",
+    "version": "v0.20.1"
+  },
+  {
+    "app": "craft-libs",
+    "archived_at": "2026-11-24T13:01:59Z",
+    "bundle": {
+      "name": "craft-libs-05b99ee.bundle",
+      "size": 205572737,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/05b99ee/craft-libs-05b99ee.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-libs/05b99ee",
+    "version": "05b99ee"
+  },
+  {
+    "app": "craft-wiki",
+    "archived_at": "2026-11-24T13:01:59Z",
+    "bundle": {
+      "name": "craft-wiki-31da5b7.bundle",
+      "size": 79126335,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-wiki/31da5b7/craft-wiki-31da5b7.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-wiki/31da5b7",
+    "version": "31da5b7"
+  },
+  {
+    "app": "indd-utils",
+    "archived_at": "2026-11-24T13:01:59Z",
+    "bundle": {
+      "name": "indd-utils-368a72e.bundle",
+      "size": 4457865,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/indd-utils/368a72e/indd-utils-368a72e.bundle"
+    },
+    "deb": null,
+    "tag": "source/indd-utils/368a72e",
+    "version": "368a72e"
+  },
+  {
+    "app": "tokencraft",
+    "archived_at": "2026-11-24T13:01:59Z",
+    "bundle": {
+      "name": "tokencraft-5ce340a.bundle",
+      "size": 65123902,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/tokencraft/5ce340a/tokencraft-5ce340a.bundle"
+    },
+    "deb": null,
+    "tag": "source/tokencraft/5ce340a",
+    "version": "5ce340a"
   },
   {
     "app": "craft-contrib",
@@ -34,18 +110,6 @@
     "deb": null,
     "tag": "source/craft-contrib/e0bf5c9",
     "version": "e0bf5c9"
-  },
-  {
-    "app": "craft-libs",
-    "archived_at": "2026-11-23T14:00:26Z",
-    "bundle": {
-      "name": "craft-libs-249a41b.bundle",
-      "size": 195465307,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/249a41b/craft-libs-249a41b.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-libs/249a41b",
-    "version": "249a41b"
   },
   {
     "app": "designcraft",
@@ -192,18 +256,6 @@
     "version": "f6b7a4c"
   },
   {
-    "app": "craft-wiki",
-    "archived_at": "2026-11-19T10:51:05Z",
-    "bundle": {
-      "name": "craft-wiki-fe4f11f.bundle",
-      "size": 79090040,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-wiki/fe4f11f/craft-wiki-fe4f11f.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-wiki/fe4f11f",
-    "version": "fe4f11f"
-  },
-  {
     "app": "artcraft-services",
     "archived_at": "2026-11-16T10:17:28Z",
     "bundle": {
@@ -274,22 +326,6 @@
     },
     "tag": "source/craft-anything/v0.6.1",
     "version": "v0.6.1"
-  },
-  {
-    "app": "craft-launcher",
-    "archived_at": "2026-11-11T09:58:21Z",
-    "bundle": {
-      "name": "craft-launcher-66beafa.bundle",
-      "size": 30138006,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.19.2/craft-launcher-66beafa.bundle"
-    },
-    "deb": {
-      "name": "artcraft-launcher-0.19.2-linux-x86_64.deb",
-      "size": 14190708,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.19.2/artcraft-launcher-0.19.2-linux-x86_64.deb"
-    },
-    "tag": "source/craft-launcher/v0.19.2",
-    "version": "v0.19.2"
   },
   {
     "app": "deckcraft",
@@ -516,18 +552,6 @@
     "version": "0a2dc72"
   },
   {
-    "app": "indd-utils",
-    "archived_at": "2026-11-09T21:23:11Z",
-    "bundle": {
-      "name": "indd-utils-136f973.bundle",
-      "size": 4444489,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/indd-utils/136f973/indd-utils-136f973.bundle"
-    },
-    "deb": null,
-    "tag": "source/indd-utils/136f973",
-    "version": "136f973"
-  },
-  {
     "app": "craft-pr-review-tool",
     "archived_at": "2026-11-09T21:12:58Z",
     "bundle": {
@@ -538,18 +562,6 @@
     "deb": null,
     "tag": "source/craft-pr-review-tool/197a26d",
     "version": "197a26d"
-  },
-  {
-    "app": "craft-launcher-assets",
-    "archived_at": "2026-11-09T20:59:41Z",
-    "bundle": {
-      "name": "craft-launcher-assets-8619bde.bundle",
-      "size": 3511893,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher-assets/8619bde/craft-launcher-assets-8619bde.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-launcher-assets/8619bde",
-    "version": "8619bde"
   },
   {
     "app": "craft-i18n",
