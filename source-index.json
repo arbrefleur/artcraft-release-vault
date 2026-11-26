@@ -1,27 +1,111 @@
 [
   {
     "app": "autocraft",
-    "archived_at": "2026-11-24T13:01:59Z",
+    "archived_at": "2026-11-25T11:52:27Z",
     "bundle": {
-      "name": "autocraft-ac77770.bundle",
-      "size": 18545592,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/autocraft/ac77770/autocraft-ac77770.bundle"
+      "name": "autocraft-e2e4bfe.bundle",
+      "size": 24823323,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/autocraft/e2e4bfe/autocraft-e2e4bfe.bundle"
     },
     "deb": null,
-    "tag": "source/autocraft/ac77770",
-    "version": "ac77770"
+    "tag": "source/autocraft/e2e4bfe",
+    "version": "e2e4bfe"
   },
   {
     "app": "craft-common-actions",
-    "archived_at": "2026-11-24T13:01:59Z",
+    "archived_at": "2026-11-25T11:52:27Z",
     "bundle": {
-      "name": "craft-common-actions-1754016.bundle",
-      "size": 3504419,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/1754016/craft-common-actions-1754016.bundle"
+      "name": "craft-common-actions-4ec2a14.bundle",
+      "size": 3157342,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/4ec2a14/craft-common-actions-4ec2a14.bundle"
     },
     "deb": null,
-    "tag": "source/craft-common-actions/1754016",
-    "version": "1754016"
+    "tag": "source/craft-common-actions/4ec2a14",
+    "version": "4ec2a14"
+  },
+  {
+    "app": "craft-launcher",
+    "archived_at": "2026-11-25T11:52:27Z",
+    "bundle": {
+      "name": "craft-launcher-910beaf.bundle",
+      "size": 35351131,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.20.3/craft-launcher-910beaf.bundle"
+    },
+    "deb": {
+      "name": "artcraft-launcher-0.20.3-linux-x86_64.deb",
+      "size": 18718958,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.20.3/artcraft-launcher-0.20.3-linux-x86_64.deb"
+    },
+    "tag": "source/craft-launcher/v0.20.3",
+    "version": "v0.20.3"
+  },
+  {
+    "app": "craft-libs",
+    "archived_at": "2026-11-25T11:52:27Z",
+    "bundle": {
+      "name": "craft-libs-3b09a64.bundle",
+      "size": 205828672,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/3b09a64/craft-libs-3b09a64.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-libs/3b09a64",
+    "version": "3b09a64"
+  },
+  {
+    "app": "craft-wiki",
+    "archived_at": "2026-11-25T11:52:27Z",
+    "bundle": {
+      "name": "craft-wiki-72f68ac.bundle",
+      "size": 79140548,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-wiki/72f68ac/craft-wiki-72f68ac.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-wiki/72f68ac",
+    "version": "72f68ac"
+  },
+  {
+    "app": "deckcraft",
+    "archived_at": "2026-11-25T11:52:27Z",
+    "bundle": {
+      "name": "deckcraft-ab3aaa1.bundle",
+      "size": 60765268,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/deckcraft/v0.19.1/deckcraft-ab3aaa1.bundle"
+    },
+    "deb": {
+      "name": "deckcraft-0.19.1-linux-x86_64.deb",
+      "size": 108054612,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/deckcraft/v0.19.1/deckcraft-0.19.1-linux-x86_64.deb"
+    },
+    "tag": "source/deckcraft/v0.19.1",
+    "version": "v0.19.1"
+  },
+  {
+    "app": "tokencraft",
+    "archived_at": "2026-11-25T11:52:27Z",
+    "bundle": {
+      "name": "tokencraft-713689a.bundle",
+      "size": 67248980,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/tokencraft/713689a/tokencraft-713689a.bundle"
+    },
+    "deb": null,
+    "tag": "source/tokencraft/713689a",
+    "version": "713689a"
+  },
+  {
+    "app": "wordcraft",
+    "archived_at": "2026-11-25T11:52:27Z",
+    "bundle": {
+      "name": "wordcraft-6c6ac69.bundle",
+      "size": 223545968,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/wordcraft/v0.19.1/wordcraft-6c6ac69.bundle"
+    },
+    "deb": {
+      "name": "wordcraft-0.19.1-linux-x86_64.deb",
+      "size": 132278240,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/wordcraft/v0.19.1/wordcraft-0.19.1-linux-x86_64.deb"
+    },
+    "tag": "source/wordcraft/v0.19.1",
+    "version": "v0.19.1"
   },
   {
     "app": "craft-launcher-assets",
@@ -36,46 +120,6 @@
     "version": "7ef19ac"
   },
   {
-    "app": "craft-launcher",
-    "archived_at": "2026-11-24T13:01:59Z",
-    "bundle": {
-      "name": "craft-launcher-bc76554.bundle",
-      "size": 34474342,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.20.1/craft-launcher-bc76554.bundle"
-    },
-    "deb": {
-      "name": "artcraft-launcher-0.20.1-linux-x86_64.deb",
-      "size": 18647038,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-launcher/v0.20.1/artcraft-launcher-0.20.1-linux-x86_64.deb"
-    },
-    "tag": "source/craft-launcher/v0.20.1",
-    "version": "v0.20.1"
-  },
-  {
-    "app": "craft-libs",
-    "archived_at": "2026-11-24T13:01:59Z",
-    "bundle": {
-      "name": "craft-libs-05b99ee.bundle",
-      "size": 205572737,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/05b99ee/craft-libs-05b99ee.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-libs/05b99ee",
-    "version": "05b99ee"
-  },
-  {
-    "app": "craft-wiki",
-    "archived_at": "2026-11-24T13:01:59Z",
-    "bundle": {
-      "name": "craft-wiki-31da5b7.bundle",
-      "size": 79126335,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-wiki/31da5b7/craft-wiki-31da5b7.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-wiki/31da5b7",
-    "version": "31da5b7"
-  },
-  {
     "app": "indd-utils",
     "archived_at": "2026-11-24T13:01:59Z",
     "bundle": {
@@ -86,18 +130,6 @@
     "deb": null,
     "tag": "source/indd-utils/368a72e",
     "version": "368a72e"
-  },
-  {
-    "app": "tokencraft",
-    "archived_at": "2026-11-24T13:01:59Z",
-    "bundle": {
-      "name": "tokencraft-5ce340a.bundle",
-      "size": 65123902,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/tokencraft/5ce340a/tokencraft-5ce340a.bundle"
-    },
-    "deb": null,
-    "tag": "source/tokencraft/5ce340a",
-    "version": "5ce340a"
   },
   {
     "app": "craft-contrib",
@@ -328,22 +360,6 @@
     "version": "v0.6.1"
   },
   {
-    "app": "deckcraft",
-    "archived_at": "2026-11-11T09:58:21Z",
-    "bundle": {
-      "name": "deckcraft-b8983ae.bundle",
-      "size": 55030056,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/deckcraft/v0.18.1/deckcraft-b8983ae.bundle"
-    },
-    "deb": {
-      "name": "deckcraft-0.18.1-linux-x86_64.deb",
-      "size": 106105064,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/deckcraft/v0.18.1/deckcraft-0.18.1-linux-x86_64.deb"
-    },
-    "tag": "source/deckcraft/v0.18.1",
-    "version": "v0.18.1"
-  },
-  {
     "app": "egui",
     "archived_at": "2026-11-11T09:58:21Z",
     "bundle": {
@@ -510,22 +526,6 @@
     "deb": null,
     "tag": "source/winit/7f66c99",
     "version": "7f66c99"
-  },
-  {
-    "app": "wordcraft",
-    "archived_at": "2026-11-11T09:58:21Z",
-    "bundle": {
-      "name": "wordcraft-07f9773.bundle",
-      "size": 184841400,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/wordcraft/v0.18.1/wordcraft-07f9773.bundle"
-    },
-    "deb": {
-      "name": "wordcraft-0.18.1-linux-x86_64.deb",
-      "size": 120018580,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/wordcraft/v0.18.1/wordcraft-0.18.1-linux-x86_64.deb"
-    },
-    "tag": "source/wordcraft/v0.18.1",
-    "version": "v0.18.1"
   },
   {
     "app": "anicraft",
