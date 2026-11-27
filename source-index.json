@@ -1,27 +1,75 @@
 [
   {
     "app": "autocraft",
-    "archived_at": "2026-11-25T11:52:27Z",
+    "archived_at": "2026-11-26T11:39:23Z",
     "bundle": {
-      "name": "autocraft-e2e4bfe.bundle",
-      "size": 24823323,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/autocraft/e2e4bfe/autocraft-e2e4bfe.bundle"
+      "name": "autocraft-f59b478.bundle",
+      "size": 25575984,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/autocraft/f59b478/autocraft-f59b478.bundle"
     },
     "deb": null,
-    "tag": "source/autocraft/e2e4bfe",
-    "version": "e2e4bfe"
+    "tag": "source/autocraft/f59b478",
+    "version": "f59b478"
   },
   {
     "app": "craft-common-actions",
-    "archived_at": "2026-11-25T11:52:27Z",
+    "archived_at": "2026-11-26T11:39:23Z",
     "bundle": {
-      "name": "craft-common-actions-4ec2a14.bundle",
-      "size": 3157342,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/4ec2a14/craft-common-actions-4ec2a14.bundle"
+      "name": "craft-common-actions-f94a438.bundle",
+      "size": 3334110,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-common-actions/f94a438/craft-common-actions-f94a438.bundle"
     },
     "deb": null,
-    "tag": "source/craft-common-actions/4ec2a14",
-    "version": "4ec2a14"
+    "tag": "source/craft-common-actions/f94a438",
+    "version": "f94a438"
+  },
+  {
+    "app": "craft-contrib",
+    "archived_at": "2026-11-26T11:39:23Z",
+    "bundle": {
+      "name": "craft-contrib-646f558.bundle",
+      "size": 790891,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-contrib/646f558/craft-contrib-646f558.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-contrib/646f558",
+    "version": "646f558"
+  },
+  {
+    "app": "craft-fonts",
+    "archived_at": "2026-11-26T11:39:23Z",
+    "bundle": {
+      "name": "craft-fonts-baf0f2c.bundle",
+      "size": 122477665,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-fonts/baf0f2c/craft-fonts-baf0f2c.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-fonts/baf0f2c",
+    "version": "baf0f2c"
+  },
+  {
+    "app": "craft-libs",
+    "archived_at": "2026-11-26T11:39:23Z",
+    "bundle": {
+      "name": "craft-libs-e9da0df.bundle",
+      "size": 211409636,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/e9da0df/craft-libs-e9da0df.bundle"
+    },
+    "deb": null,
+    "tag": "source/craft-libs/e9da0df",
+    "version": "e9da0df"
+  },
+  {
+    "app": "tokencraft",
+    "archived_at": "2026-11-26T11:39:23Z",
+    "bundle": {
+      "name": "tokencraft-06276c9.bundle",
+      "size": 67426983,
+      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/tokencraft/06276c9/tokencraft-06276c9.bundle"
+    },
+    "deb": null,
+    "tag": "source/tokencraft/06276c9",
+    "version": "06276c9"
   },
   {
     "app": "craft-launcher",
@@ -38,18 +86,6 @@
     },
     "tag": "source/craft-launcher/v0.20.3",
     "version": "v0.20.3"
-  },
-  {
-    "app": "craft-libs",
-    "archived_at": "2026-11-25T11:52:27Z",
-    "bundle": {
-      "name": "craft-libs-3b09a64.bundle",
-      "size": 205828672,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-libs/3b09a64/craft-libs-3b09a64.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-libs/3b09a64",
-    "version": "3b09a64"
   },
   {
     "app": "craft-wiki",
@@ -78,18 +114,6 @@
     },
     "tag": "source/deckcraft/v0.19.1",
     "version": "v0.19.1"
-  },
-  {
-    "app": "tokencraft",
-    "archived_at": "2026-11-25T11:52:27Z",
-    "bundle": {
-      "name": "tokencraft-713689a.bundle",
-      "size": 67248980,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/tokencraft/713689a/tokencraft-713689a.bundle"
-    },
-    "deb": null,
-    "tag": "source/tokencraft/713689a",
-    "version": "713689a"
   },
   {
     "app": "wordcraft",
@@ -130,18 +154,6 @@
     "deb": null,
     "tag": "source/indd-utils/368a72e",
     "version": "368a72e"
-  },
-  {
-    "app": "craft-contrib",
-    "archived_at": "2026-11-23T14:00:26Z",
-    "bundle": {
-      "name": "craft-contrib-e0bf5c9.bundle",
-      "size": 653705,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-contrib/e0bf5c9/craft-contrib-e0bf5c9.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-contrib/e0bf5c9",
-    "version": "e0bf5c9"
   },
   {
     "app": "designcraft",
@@ -250,18 +262,6 @@
     "deb": null,
     "tag": "source/craft-extensions/7c9c70b",
     "version": "7c9c70b"
-  },
-  {
-    "app": "craft-fonts",
-    "archived_at": "2026-11-20T10:41:28Z",
-    "bundle": {
-      "name": "craft-fonts-26a7923.bundle",
-      "size": 122177681,
-      "url": "https://github.com/arbrefleur/artcraft-release-vault/releases/download/source/craft-fonts/26a7923/craft-fonts-26a7923.bundle"
-    },
-    "deb": null,
-    "tag": "source/craft-fonts/26a7923",
-    "version": "26a7923"
   },
   {
     "app": "craft-skills",
